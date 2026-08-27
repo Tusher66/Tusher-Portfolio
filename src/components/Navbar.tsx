@@ -1,174 +1,146 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-scroll';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
-const navLinks = [
-  { name: 'Home', to: 'hero' },
-  { name: 'About', to: 'about' },
-  { name: 'Skills', to: 'skills' },
-  { name: 'Experience', to: 'experience' },
-  { name: 'Projects', to: 'projects' },
-  { name: 'Education', to: 'education' },
-  { name: 'Contact', to: 'contact' },
-];
+interface NavbarProps {
+  activeSection?: string;
+}
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+export default function Navbar({ activeSection = 'home' }: NavbarProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <>
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/5 shadow-2xl'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2"
-            >
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white text-sm font-mono">
-                IT
-              </div>
-              <span className="font-bold text-white text-lg hidden sm:block">
-                Ismail<span className="gradient-text">Tusher</span>
-              </span>
-            </motion.div>
+  const navLinks = [
+    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'Services', href: '#services', id: 'services' },
+    { name: 'About me', href: '#about', id: 'about' },
+    { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
+    { name: 'Contact me', href: '#contact', id: 'contact' },
+  ];
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  spy={true}
-                  smooth={true}
-                  offset={-80}
-                  duration={600}
-                  onSetActive={() => setActiveSection(link.to)}
-                  className={`nav-link text-sm font-medium cursor-pointer transition-colors duration-300 ${
-                    activeSection === link.to
-                      ? 'text-indigo-400'
-                      : 'text-gray-400 hover:text-white'
+  const scrollTo = (id: string) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -70;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'header-glass py-3.5 shadow-xl shadow-black/40'
+          : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          {/* Logo matching Figma */}
+          <button
+            onClick={() => scrollTo('home')}
+            className="flex items-center gap-1 text-2xl sm:text-3xl font-black tracking-wider text-white hover:opacity-90 transition-opacity cursor-pointer group"
+          >
+            <span className="text-white">LOG</span>
+            <span className="text-orange-accent group-hover:scale-110 inline-block transition-transform">
+              O
+            </span>
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  className={`text-sm lg:text-base font-medium transition-colors cursor-pointer relative py-1 ${
+                    isActive
+                      ? 'text-white font-semibold'
+                      : 'text-neutral-400 hover:text-white'
                   }`}
                 >
                   {link.name}
-                  {activeSection === link.to && (
+                  {isActive && (
                     <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
+                      layoutId="activeNavIndicator"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-accent rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </Link>
-              ))}
-              <Link
-                to="contact"
-                smooth={true}
-                offset={-80}
-                duration={600}
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-5 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-white text-sm font-semibold cursor-pointer hover:shadow-lg hover:shadow-indigo-500/30 transition-all"
-                >
-                  Hire Me
-                </motion.button>
-              </Link>
-            </div>
+                </button>
+              );
+            })}
+          </nav>
 
-            {/* Mobile Toggle */}
+          {/* Right CTA Button matching Figma */}
+          <div className="hidden md:flex items-center">
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors"
-              aria-label="Toggle mobile menu"
+              onClick={() => scrollTo('contact')}
+              className="btn-orange-glow px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm font-semibold tracking-wide cursor-pointer"
             >
-              <motion.span
-                animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                className="block w-6 h-0.5 bg-white rounded-full transition-all"
-              />
-              <motion.span
-                animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="block w-6 h-0.5 bg-white rounded-full transition-all"
-              />
-              <motion.span
-                animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                className="block w-6 h-0.5 bg-white rounded-full transition-all"
-              />
+              Hire Me
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg bg-neutral-800/80 text-white hover:text-orange-accent transition-colors cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </button>
           </div>
         </div>
-      </motion.nav>
+      </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Drawer */}
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="mobile-menu fixed top-16 left-0 right-0 z-40 border-b border-white/10 py-6 px-6 md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-[#161616]/95 backdrop-blur-xl border-b border-neutral-800 px-6 py-6 shadow-2xl"
           >
             <div className="flex flex-col gap-4">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.to}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  className={`text-left text-base font-medium py-2 transition-colors cursor-pointer ${
+                    activeSection === link.id
+                      ? 'text-orange-accent font-semibold pl-2 border-l-2 border-orange-accent'
+                      : 'text-neutral-300 hover:text-white'
+                  }`}
                 >
-                  <Link
-                    to={link.to}
-                    spy={true}
-                    smooth={true}
-                    offset={-80}
-                    duration={600}
-                    onClick={() => setMobileOpen(false)}
-                    className="block text-gray-300 hover:text-indigo-400 font-medium text-base transition-colors cursor-pointer py-2 border-b border-white/5"
-                  >
-                    <span className="text-indigo-500 font-mono text-sm mr-2">
-                      0{i + 1}.
-                    </span>
-                    {link.name}
-                  </Link>
-                </motion.div>
+                  {link.name}
+                </button>
               ))}
-              <Link
-                to="contact"
-                smooth={true}
-                offset={-80}
-                duration={600}
-                onClick={() => setMobileOpen(false)}
+              <button
+                onClick={() => scrollTo('contact')}
+                className="btn-orange-glow w-full mt-3 py-3 rounded-full text-sm font-semibold text-center cursor-pointer"
               >
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-2 w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white font-semibold"
-                >
-                  Hire Me
-                </motion.button>
-              </Link>
+                Hire Me
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }

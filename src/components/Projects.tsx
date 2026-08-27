@@ -1,274 +1,315 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub, FaLayerGroup } from 'react-icons/fa';
 
-const projects = [
-  {
-    title: 'E-Commerce Platform',
-    description:
-      'A full-featured multi-vendor e-commerce platform with product management, order tracking, payment gateway integration (SSLCommerz/bKash), and admin dashboard built with Spring Boot microservices.',
-    tech: ['Java', 'Spring Boot', 'Vue.js', 'MySQL', 'Redis', 'Docker'],
-    github: 'https://github.com/Tusher66',
-    live: null,
-    color: 'from-indigo-500 to-purple-600',
-    borderColor: 'border-indigo-500/30',
-    icon: '🛒',
-    tags: ['Backend', 'Frontend', 'Microservices'],
-    featured: true,
-  },
-  {
-    title: 'Hospital Management System',
-    description:
-      'Comprehensive hospital management solution featuring patient registration, appointment scheduling, doctor management, prescription tracking, and billing module with role-based access control.',
-    tech: ['Java', 'Spring Boot', 'Nuxt.js', 'PostgreSQL', 'JWT', 'Spring Security'],
-    github: 'https://github.com/Tusher66',
-    live: null,
-    color: 'from-purple-500 to-pink-600',
-    borderColor: 'border-purple-500/30',
-    icon: '🏥',
-    tags: ['Full-Stack', 'Healthcare', 'Security'],
-    featured: true,
-  },
-  {
-    title: 'Real-Time Chat Application',
-    description:
-      'WebSocket-powered real-time messaging app with private/group chats, file sharing, read receipts, online status indicators, and push notification support.',
-    tech: ['Java', 'Spring Boot', 'WebSocket', 'Vue.js', 'MongoDB', 'Redis'],
-    github: 'https://github.com/Tusher66',
-    live: null,
-    color: 'from-cyan-500 to-teal-600',
-    borderColor: 'border-cyan-500/30',
-    icon: '💬',
-    tags: ['Real-Time', 'WebSocket', 'Chat'],
-    featured: true,
-  },
-  {
-    title: 'Task Management Dashboard',
-    description:
-      'Trello-like project management tool with drag-and-drop boards, task assignments, deadline tracking, team collaboration features, and comprehensive analytics dashboard.',
-    tech: ['Vue.js', 'Nuxt.js', 'Spring Boot', 'MySQL', 'Tailwind CSS'],
-    github: 'https://github.com/Tusher66',
-    live: null,
-    color: 'from-orange-500 to-red-600',
-    borderColor: 'border-orange-500/30',
-    icon: '📋',
-    tags: ['Productivity', 'Dashboard', 'Collaboration'],
-    featured: false,
-  },
-  {
-    title: 'Inventory Management System',
-    description:
-      'Enterprise inventory tracking system with barcode scanning support, automated stock alerts, purchase order management, supplier database, and detailed reporting.',
-    tech: ['Java', 'Spring Boot', 'Vue.js', 'MySQL', 'JasperReports'],
-    github: 'https://github.com/Tusher66',
-    live: null,
-    color: 'from-green-500 to-emerald-600',
-    borderColor: 'border-green-500/30',
-    icon: '📦',
-    tags: ['Enterprise', 'Inventory', 'Reports'],
-    featured: false,
-  },
-  {
-    title: 'API Gateway & Auth Service',
-    description:
-      'Centralized API gateway with JWT authentication, OAuth2 integration, rate limiting, request routing to microservices, and comprehensive logging/monitoring.',
-    tech: ['Java', 'Spring Cloud', 'Spring Security', 'Redis', 'Docker', 'Kubernetes'],
-    github: 'https://github.com/Tusher66',
-    live: null,
-    color: 'from-yellow-500 to-orange-600',
-    borderColor: 'border-yellow-500/30',
-    icon: '🔐',
-    tags: ['Microservices', 'Security', 'DevOps'],
-    featured: false,
-  },
-];
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  categoryType: 'website' | 'mobile' | 'desktop' | 'branding';
+  description: string;
+  tech: string[];
+  gradient: string;
+  liveUrl?: string;
+  githubUrl?: string;
+}
 
 export default function Projects() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
+  const [activeFilter, setActiveFilter] = useState<string>('All');
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const filterTabs = [
+    { name: 'All', key: 'All' },
+    { name: 'Website Design', key: 'website' },
+    { name: 'App Mobile Design', key: 'mobile' },
+    { name: 'App Desktop', key: 'desktop' },
+    { name: 'Branding', key: 'branding' },
+  ];
+
+  const projects: Project[] = [
+    {
+      id: 1,
+      title: 'RAISE Enterprise ERP',
+      category: 'Website Design',
+      categoryType: 'website',
+      description:
+        'A comprehensive module-based ERP platform for the Wage Earners’ Welfare Board covering payroll, accounting, HR, reintegration, and financial assistance.',
+      tech: ['Java Spring Boot', 'Vue.js 3', 'Tailwind CSS', 'WebSocket'],
+      gradient: 'from-amber-600/30 via-orange-950/40 to-neutral-900',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+    {
+      id: 2,
+      title: 'Undercover Dark Portfolio',
+      category: 'Website Design',
+      categoryType: 'website',
+      description:
+        'A sleek, high-contrast dark aesthetic portfolio and design agency showcase with micro-interactions, smooth scroll, and glowing typography.',
+      tech: ['React', 'Framer Motion', 'Tailwind CSS', 'Figma'],
+      gradient: 'from-neutral-700/40 via-neutral-900 to-black',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+    {
+      id: 3,
+      title: 'Deeam Car Wash Mobile',
+      category: 'App Mobile Design',
+      categoryType: 'mobile',
+      description:
+        'A modern booking and fleet scheduling application supporting live slot management, real-time push notifications, client chat, and payment approvals.',
+      tech: ['Vue.js 3', 'Spring Boot', 'REST APIs', 'PostgreSQL'],
+      gradient: 'from-orange-700/30 via-red-950/30 to-neutral-900',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+    {
+      id: 4,
+      title: 'Vehicle Inspection Desktop',
+      category: 'App Desktop',
+      categoryType: 'desktop',
+      description:
+        'A high-reliability BRTA desktop workflow system coordinating automated robotic device inspections, certificate generation, and inspection logs.',
+      tech: ['Spring Boot', 'Oracle SQL', 'JasperReports', 'Angular'],
+      gradient: 'from-blue-900/30 via-indigo-950/30 to-neutral-900',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+    {
+      id: 5,
+      title: 'MV Tax Collection & Billing',
+      category: 'App Desktop',
+      categoryType: 'desktop',
+      description:
+        'Secure tax calculation and automated billing system handling millions of driving licence and vehicle registrations across national centers.',
+      tech: ['Java Spring Boot', 'PostgreSQL', 'Oracle', 'JDBC'],
+      gradient: 'from-emerald-900/30 via-teal-950/30 to-neutral-900',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+    {
+      id: 6,
+      title: 'Zalwa Modern Brand Identity',
+      category: 'Branding',
+      categoryType: 'branding',
+      description:
+        'A complete brand guideline system featuring luxury typography pairing, dark aesthetic design tokens, icon sets, and digital mockups.',
+      tech: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
+      gradient: 'from-purple-900/30 via-fuchsia-950/30 to-neutral-900',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+  ];
+
+  const filteredProjects =
+    activeFilter === 'All'
+      ? projects
+      : projects.filter((p) => p.categoryType === activeFilter);
 
   return (
-    <section id="projects" className="py-24 relative bg-[#080810]">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/5 to-transparent pointer-events-none" />
-
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="py-24 relative bg-[#111111] overflow-hidden">
+      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center max-w-2xl mx-auto mb-12"
         >
-          <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-3 block">
-            04. Projects
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
-            Featured <span className="gradient-text">Work</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
+            Portfolio
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mx-auto" />
-          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
-            A selection of projects I've built — from full-stack web apps to enterprise systems
+          <p className="text-neutral-400 text-sm sm:text-base">
+            Selected showcase of web applications, mobile interfaces, desktop platforms, and design systems.
           </p>
         </motion.div>
 
-        {/* Featured Projects */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {projects.filter(p => p.featured).map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              whileHover={{ y: -8 }}
-              className={`glass-card border ${project.borderColor} overflow-hidden group hover:shadow-2xl transition-all duration-300`}
-            >
-              {/* Card Header */}
-              <div className={`h-2 bg-gradient-to-r ${project.color}`} />
-              <div className="p-6">
-                {/* Icon & Tags */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${project.color} bg-opacity-20 flex items-center justify-center text-3xl shadow-lg`}>
-                    {project.icon}
+        {/* Filter Category Tabs matching Figma buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-14"
+        >
+          {filterTabs.map((tab) => {
+            const isActive = activeFilter === tab.key;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveFilter(tab.key)}
+                className={`px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'btn-orange-glow shadow-md'
+                    : 'bg-[#1c1c1c] text-neutral-300 border border-neutral-800 hover:bg-[#252525] hover:text-white'
+                }`}
+              >
+                {tab.name}
+              </button>
+            );
+          })}
+        </motion.div>
+
+        {/* Project Cards Grid matching Figma layout */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.article
+                layout
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.92 }}
+                transition={{ duration: 0.35 }}
+                onClick={() => setSelectedProject(project)}
+                className="figma-card overflow-hidden group cursor-pointer flex flex-col"
+              >
+                {/* Mockup Preview Area */}
+                <div
+                  className={`relative h-56 sm:h-64 bg-gradient-to-br ${project.gradient} p-6 flex flex-col justify-between border-b border-neutral-800/80 overflow-hidden`}
+                >
+                  {/* Subtle Grid overlay */}
+                  <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+
+                  {/* Top Badge */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[11px] font-semibold text-orange-accent border border-orange-500/30">
+                      {project.category}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-neutral-300 group-hover:text-orange-accent group-hover:bg-black/80 transition-all">
+                      <FaExternalLinkAlt className="text-xs" />
+                    </div>
                   </div>
-                  <div className="flex gap-1 flex-wrap justify-end">
-                    {project.tags.map((tag) => (
+
+                  {/* Visual mockup stylized card */}
+                  <div className="relative z-10 my-auto">
+                    <div className="bg-[#181818]/90 backdrop-blur-md border border-neutral-700/60 rounded-xl p-4 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                      </div>
+                      <p className="text-xs font-mono text-neutral-300 truncate">
+                        // {project.title}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom Tech Pills */}
+                  <div className="relative z-10 flex flex-wrap gap-1.5">
+                    {project.tech.slice(0, 3).map((t) => (
                       <span
-                        key={tag}
-                        className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-500"
+                        key={t}
+                        className="text-[10px] font-medium bg-black/50 text-neutral-300 px-2 py-0.5 rounded-md border border-white/10"
                       >
-                        {tag}
+                        {t}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-white font-bold text-lg mb-2 group-hover:gradient-text transition-all">
-                  {project.title}
-                </h3>
+                {/* Card Bottom Meta matching Figma ("Name Project" & "Categories") */}
+                <div className="p-6 flex flex-col justify-between flex-1 bg-[#181818]">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-orange-accent transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-400 line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
 
-                {/* Description */}
-                <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-4">
-                  {project.description}
+                  <div className="mt-4 pt-3 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
+                    <span className="font-semibold text-orange-accent">
+                      {project.category}
+                    </span>
+                    <span className="group-hover:translate-x-1 transition-transform text-neutral-300">
+                      View Details →
+                    </span>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      {/* Modal Detail Popup */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#1a1a1a] border border-neutral-700 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative"
+            >
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 text-neutral-400 hover:text-white p-2 text-lg cursor-pointer"
+              >
+                ✕
+              </button>
+
+              <span className="px-3 py-1 bg-orange-accent/10 border border-orange-accent/30 text-orange-accent text-xs font-semibold rounded-full inline-block mb-3">
+                {selectedProject.category}
+              </span>
+
+              <h3 className="text-2xl font-bold text-white mb-3">
+                {selectedProject.title}
+              </h3>
+
+              <p className="text-neutral-300 text-sm leading-relaxed mb-6">
+                {selectedProject.description}
+              </p>
+
+              <div className="mb-6">
+                <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">
+                  Technologies Used
                 </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.tech.map((tech) => (
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tech.map((t) => (
                     <span
-                      key={tech}
-                      className="px-2 py-0.5 bg-white/5 rounded text-xs text-gray-400 font-mono border border-white/5"
+                      key={t}
+                      className="px-2.5 py-1 bg-[#242424] border border-neutral-700 text-neutral-300 text-xs rounded-lg"
                     >
-                      {tech}
+                      {t}
                     </span>
                   ))}
                 </div>
+              </div>
 
-                {/* Links */}
-                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors"
-                    aria-label="View on GitHub"
-                  >
-                    <FaGithub />
-                    <span>Code</span>
-                  </motion.a>
-                  {project.live && (
-                    <motion.a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="flex items-center gap-2 text-gray-400 hover:text-indigo-400 text-sm transition-colors"
-                      aria-label="Live Demo"
-                    >
-                      <FaExternalLinkAlt />
-                      <span>Live</span>
-                    </motion.a>
-                  )}
-                  <span className={`ml-auto text-xs px-2 py-0.5 rounded-full bg-gradient-to-r ${project.color} text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity`}>
-                    View
-                  </span>
-                </div>
+              <div className="flex gap-4">
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-orange-glow flex-1 py-2.5 rounded-xl text-center text-sm font-semibold flex items-center justify-center gap-2"
+                >
+                  <FaGithub /> GitHub Link
+                </a>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="px-5 py-2.5 bg-neutral-800 text-neutral-300 hover:text-white rounded-xl text-sm font-semibold"
+                >
+                  Close
+                </button>
               </div>
             </motion.div>
-          ))}
-        </div>
-
-        {/* Other Projects */}
-        <motion.h3
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center text-gray-500 text-sm font-mono tracking-widest uppercase mb-6"
-        >
-          Other Notable Projects
-        </motion.h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.filter(p => !p.featured).map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
-              whileHover={{ y: -5 }}
-              className={`glass-card border ${project.borderColor} p-5 group hover:shadow-xl transition-all duration-300`}
-            >
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-2xl">{project.icon}</span>
-                <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.2 }}
-                    className="text-gray-500 hover:text-white transition-colors"
-                    aria-label="GitHub"
-                  >
-                    <FaGithub />
-                  </motion.a>
-                </div>
-              </div>
-              <h4 className="text-white font-semibold text-base mb-2">{project.title}</h4>
-              <p className="text-gray-500 text-xs leading-relaxed mb-3 line-clamp-3">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1">
-                {project.tech.slice(0, 4).map((tech) => (
-                  <span key={tech} className="text-xs text-gray-500 font-mono">
-                    #{tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* GitHub CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1 }}
-          className="text-center mt-12"
-        >
-          <motion.a
-            href="https://github.com/Tusher66"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-3.5 border border-indigo-500/40 rounded-full text-indigo-300 font-semibold hover:bg-indigo-500/10 hover:border-indigo-400 transition-all"
-          >
-            <FaGithub className="text-xl" />
-            View All Projects on GitHub
-          </motion.a>
-        </motion.div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

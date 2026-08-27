@@ -1,270 +1,240 @@
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { Link } from 'react-scroll';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaDownload, FaArrowDown } from 'react-icons/fa';
-
-const particles = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  size: Math.random() * 4 + 2,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  duration: Math.random() * 4 + 3,
-  delay: Math.random() * 3,
-}));
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaDribbble,
+  FaBehance,
+  FaGithub,
+  FaDownload,
+  FaPaperPlane,
+} from 'react-icons/fa';
 
 export default function Hero() {
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -70;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const socialLinks = [
+    { icon: <FaInstagram />, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/in/ismail-hossain-tusher', label: 'LinkedIn' },
+    { icon: <FaDribbble />, href: 'https://dribbble.com', label: 'Dribbble' },
+    { icon: <FaBehance />, href: 'https://behance.net', label: 'Behance' },
+    { icon: <FaGithub />, href: 'https://github.com/Tusher66', label: 'GitHub' },
+  ];
+
+  const stats = [
+    { number: '3+', label: 'Years Experience' },
+    { number: '20+', label: 'Projects Completed' },
+    { number: '15+', label: 'Happy Clients' },
+  ];
+
   return (
     <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0f] bg-grid"
+      id="home"
+      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-[#111111]"
     >
-      {/* Background Blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-blob"
-          style={{ filter: 'blur(80px)' }}
-        />
-        <div
-          className="absolute top-1/3 right-1/4 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-blob-delay"
-          style={{ filter: 'blur(80px)' }}
-        />
-        <div
-          className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-cyan-600/15 rounded-full blur-3xl animate-blob"
-          style={{ filter: 'blur(60px)', animationDelay: '4s' }}
-        />
-      </div>
+      {/* Ambient background glow matching Figma */}
+      <div className="hero-glow-bg" />
+      <div className="hero-glow-bg-left" />
 
-      {/* Floating Particles */}
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full bg-indigo-400/30 pointer-events-none"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-20">
-        <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-12 lg:gap-20">
-          {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left w-full max-w-full">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Content Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
+          >
+            {/* Greeting */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs sm:text-sm font-medium mb-5 sm:mb-6"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-neutral-400 text-lg sm:text-xl font-medium mb-1 tracking-wide"
             >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Available for opportunities
-            </motion.div>
+              Hi I am
+            </motion.p>
 
             {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] sm:leading-tight mb-3 sm:mb-4 break-words"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-200 mb-2 tracking-tight"
             >
-              Md. Ismail
-              <br />
-              <span className="gradient-text">Hossain Tusher</span>
-            </motion.h1>
+              Md. Ismail Hossain Tusher
+            </motion.h2>
 
-            {/* Typing Animation */}
+            {/* Big Main Highlight Role */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg sm:text-2xl text-gray-400 font-medium mb-5 sm:mb-6 min-h-[2.5rem] sm:h-10"
+              className="mb-6 min-h-[60px] sm:min-h-[80px]"
             >
-              <TypeAnimation
-                sequence={[
-                  'Full-Stack Software Engineer',
-                  2000,
-                  'Java Spring Boot Developer',
-                  2000,
-                  'VueJS Frontend Specialist',
-                  2000,
-                  'Problem Solver & Innovator',
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                className="text-indigo-300 font-mono"
-              />
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-orange-accent leading-none">
+                <TypeAnimation
+                  sequence={[
+                    'UI/UX designer',
+                    2500,
+                    'Full-Stack Dev',
+                    2500,
+                    'Software Engineer',
+                    2500,
+                  ]}
+                  wrapper="span"
+                  speed={40}
+                  repeat={Infinity}
+                />
+              </h1>
             </motion.div>
 
-            {/* Description */}
+            {/* Subtitle / Bio summary */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-gray-400 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-neutral-400 text-sm sm:text-base max-w-xl mb-8 leading-relaxed"
             >
-              A seasoned full-stack engineer with <span className="text-indigo-400 font-semibold">3+ years of experience</span>,
-              building scalable backend systems with Java Spring Boot and crafting elegant UIs with VueJS.
+              Designing intuitive digital interfaces and engineering high-performance, scalable web systems. Passionate about building seamless user experiences with modern architecture.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* Social Links Row */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10"
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-3.5 sm:gap-4 mb-9 flex-wrap justify-center lg:justify-start"
             >
-              <Link to="projects" smooth={true} offset={-80} duration={600}>
-                <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(99,102,241,0.4)' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-white font-semibold text-sm sm:text-base cursor-pointer transition-all"
-                >
-                  View Projects
-                </motion.button>
-              </Link>
-              <Link to="contact" smooth={true} offset={-80} duration={600}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-indigo-500/40 text-indigo-300 font-semibold text-sm sm:text-base cursor-pointer hover:bg-indigo-500/10 hover:border-indigo-400 transition-all flex items-center justify-center gap-2"
-                >
-                  <FaDownload className="text-sm" />
-                  Contact Me
-                </motion.button>
-              </Link>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
-            >
-              {[
-                { icon: <FaGithub />, href: 'https://github.com/Tusher66', label: 'GitHub' },
-                { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/ismail-hossain-tusher', label: 'LinkedIn' },
-                { icon: <FaEnvelope />, href: 'mailto:tusher66@gmail.com', label: 'Email' },
-                { icon: <FaPhone />, href: 'tel:+8801754343120', label: 'Phone' },
-              ].map((social) => (
-                <motion.a
+              {socialLinks.map((social) => (
+                <a
                   key={social.label}
                   href={social.href}
-                  target={social.href.startsWith('http') ? '_blank' : '_self'}
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  whileHover={{ scale: 1.2, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all text-base sm:text-lg"
+                  className="social-icon-btn"
                 >
                   {social.icon}
-                </motion.a>
+                </a>
               ))}
-              <div className="ml-1 sm:ml-2 text-gray-600 text-xs sm:text-sm hidden sm:flex items-center gap-2">
-                <div className="h-px w-8 bg-gray-700" />
-                <span className="text-gray-500">Dhaka, BD</span>
-              </div>
             </motion.div>
-          </div>
 
-          {/* Avatar / Visual */}
+            {/* Action Buttons Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-wrap items-center gap-4 sm:gap-5 justify-center lg:justify-start mb-12"
+            >
+              <button
+                onClick={() => scrollTo('contact')}
+                className="btn-orange-glow px-8 py-3.5 rounded-full text-base font-semibold tracking-wide flex items-center gap-2 cursor-pointer"
+              >
+                <span>Hire Me</span>
+                <FaPaperPlane className="text-xs opacity-90" />
+              </button>
+
+              <button
+                onClick={() => scrollTo('about')}
+                className="px-8 py-3.5 rounded-full text-base font-semibold text-white bg-[#1e1e1e] border border-neutral-700 hover:border-orange-accent hover:bg-[#252525] transition-all cursor-pointer flex items-center gap-2"
+              >
+                <span>Download CV</span>
+                <FaDownload className="text-xs text-orange-accent" />
+              </button>
+            </motion.div>
+
+            {/* Experience / Projects Stats Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="grid grid-cols-3 gap-4 sm:gap-8 pt-6 border-t border-neutral-800/80 w-full max-w-lg"
+            >
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center lg:text-left">
+                  <p className="text-2xl sm:text-3xl font-extrabold text-orange-accent">
+                    {stat.number}
+                  </p>
+                  <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right Visual / Portrait Column matching Figma layout */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 100 }}
-            className="relative flex-shrink-0 mx-auto lg:mx-0"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="lg:col-span-5 flex justify-center relative"
           >
-            {/* Outer Ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-              className="absolute inset-0 rounded-full border-2 border-dashed border-indigo-500/30"
-              style={{ margin: '-16px' }}
-            />
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute inset-0 rounded-full border border-purple-500/20"
-              style={{ margin: '-32px' }}
-            />
+            <div className="relative w-[300px] h-[360px] sm:w-[380px] sm:h-[460px] lg:w-[420px] lg:h-[500px]">
+              {/* Background Circular Arc & Halo matching Figma */}
+              <div className="absolute inset-x-4 bottom-0 top-12 bg-gradient-to-t from-[#161616] to-[#222222] rounded-t-full border border-neutral-800/80 overflow-hidden shadow-2xl">
+                {/* Subtle Orange Glow Ring */}
+                <div className="absolute inset-0 bg-radial from-orange-500/10 via-transparent to-transparent opacity-60" />
+              </div>
 
-            {/* Profile Image Container */}
-            <div className="relative w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-              {/* Gradient Background */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-600/30 via-purple-600/20 to-cyan-600/20 animate-pulse-glow" />
+              {/* Decorative Orange Arc Behind Profile */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-2 rounded-full border border-dashed border-orange-500/30 pointer-events-none"
+              />
 
-              {/* Avatar with initials */}
-              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#1a1a2e] to-[#16213e] border border-indigo-500/30 overflow-hidden flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-5xl sm:text-7xl lg:text-8xl font-black gradient-text font-mono select-none">
-                    IHT
-                  </div>
-                  <div className="text-indigo-400/60 text-[10px] sm:text-xs font-mono mt-2 tracking-widest">
-                    FULL-STACK
+              {/* Portrait Visual Representation */}
+              <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-2">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {/* Stylized Silhouette & Avatar */}
+                  <div className="relative z-10 w-64 h-80 sm:w-80 sm:h-96 flex flex-col items-center justify-center">
+                    <div className="w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] border-2 border-orange-500/40 p-2 shadow-2xl flex items-center justify-center relative group">
+                      <div className="w-full h-full rounded-full bg-[#171717] flex flex-col items-center justify-center text-center overflow-hidden relative">
+                        <svg
+                          className="w-32 h-32 sm:w-40 sm:h-40 text-neutral-300 transform translate-y-3"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                        <div className="absolute bottom-3 bg-orange-accent/90 text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-md">
+                          Ismail Tusher
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 px-2 py-1 sm:px-3 sm:py-1.5 bg-[#1a1a2e] border border-indigo-500/40 rounded-full text-[10px] sm:text-xs font-mono text-indigo-300 shadow-lg shadow-indigo-500/20"
-              >
-                ☕ Spring Boot
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute -bottom-2 -left-4 sm:-bottom-2 sm:-left-6 px-2 py-1 sm:px-3 sm:py-1.5 bg-[#1a1a2e] border border-green-500/40 rounded-full text-[10px] sm:text-xs font-mono text-green-300 shadow-lg shadow-green-500/20"
-              >
-                💚 Vue.js
-              </motion.div>
+              {/* Floating Tool Badges matching Figma aesthetic */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="hidden sm:block absolute top-1/2 -right-8 px-3 py-1.5 bg-[#1a1a2e] border border-orange-500/40 rounded-full text-xs font-mono text-orange-300 shadow-lg shadow-orange-500/20"
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-16 -left-4 sm:-left-6 px-3.5 py-2 bg-[#1c1c1c]/90 border border-orange-500/30 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2.5 z-20"
               >
-                ⚡ 3+ Years
+                <span className="w-3 h-3 rounded-full bg-orange-accent animate-pulse" />
+                <span className="text-xs font-semibold text-white">UI/UX & Code</span>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                className="absolute bottom-12 -right-4 sm:-right-6 px-4 py-2.5 bg-[#1c1c1c]/90 border border-neutral-700 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2 z-20"
+              >
+                <span className="text-orange-accent font-bold text-sm">Spring + Vue</span>
               </motion.div>
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="flex justify-center mt-12 pb-8"
-        >
-          <Link to="about" smooth={true} offset={-80} duration={600}>
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="flex flex-col items-center gap-2 text-gray-500 hover:text-indigo-400 cursor-pointer transition-colors"
-            >
-              <span className="text-xs font-mono tracking-widest uppercase">Scroll Down</span>
-              <FaArrowDown className="text-lg" />
-            </motion.div>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );
