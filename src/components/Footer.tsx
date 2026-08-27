@@ -7,6 +7,7 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaArrowUp,
+  FaWhatsapp,
 } from 'react-icons/fa';
 import Logo from './Logo';
 
@@ -77,14 +78,24 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Direct Contact Info (Email & Phone) matching Figma */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-neutral-300 text-sm mb-10">
+        {/* Direct Contact Info (Email, WhatsApp & Phone) */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 text-neutral-300 text-sm mb-10">
           <a
             href="mailto:tusher66@gmail.com"
             className="flex items-center gap-2.5 hover:text-orange-accent transition-colors"
           >
             <FaEnvelope className="text-orange-accent text-base" />
             <span>tusher66@gmail.com</span>
+          </a>
+
+          <a
+            href="https://wa.me/8801754343120?text=Hi%20Ismail,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 text-emerald-400 hover:text-emerald-300 transition-colors"
+          >
+            <FaWhatsapp className="text-emerald-400 text-lg" />
+            <span>WhatsApp (+880 1754-343120)</span>
           </a>
 
           <a

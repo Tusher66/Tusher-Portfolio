@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
+import WhatsAppButton from './components/WhatsAppButton';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
@@ -48,6 +49,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   FaGithub,
   FaDownload,
   FaPaperPlane,
+  FaWhatsapp,
 } from 'react-icons/fa';
 import myPicture from '../assets/Images/myPicture.png';
 
@@ -22,11 +23,12 @@ export default function Hero() {
   };
 
   const socialLinks = [
-    { icon: <FaInstagram />, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: <FaWhatsapp className="text-emerald-400" />, href: 'https://wa.me/8801754343120?text=Hi%20Ismail,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect!', label: 'WhatsApp' },
     { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/in/ismail-hossain-tusher', label: 'LinkedIn' },
+    { icon: <FaGithub />, href: 'https://github.com/Tusher66', label: 'GitHub' },
     { icon: <FaDribbble />, href: 'https://dribbble.com', label: 'Dribbble' },
     { icon: <FaBehance />, href: 'https://behance.net', label: 'Behance' },
-    { icon: <FaGithub />, href: 'https://github.com/Tusher66', label: 'GitHub' },
+    { icon: <FaInstagram />, href: 'https://instagram.com', label: 'Instagram' },
   ];
 
   const stats = [
