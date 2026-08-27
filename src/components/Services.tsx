@@ -1,47 +1,47 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
-  FaMobileAlt,
-  FaPalette,
-  FaLaptopCode,
+  FaServer,
+  FaCode,
+  FaDatabase,
   FaLayerGroup,
-  FaGem,
-  FaVideo,
-} from 'react-icons/fa';
+  FaDocker,
+  FaNetworkWired,
+} from 'react-icons/fa6';
 
 export default function Services() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const services = [
     {
-      icon: <FaMobileAlt className="text-2xl" />,
-      title: 'App Design',
-      desc: 'Crafting responsive, high-performance mobile and web applications with seamless user flows and state-of-the-art UI.',
+      icon: <FaServer className="text-2xl" />,
+      title: 'Backend Engineering',
+      desc: 'Building secure, highly scalable backend systems and RESTful APIs using Java, Spring Boot, Spring Security, and Microservices.',
     },
     {
-      icon: <FaPalette className="text-2xl" />,
-      title: 'UI/UX Design',
-      desc: 'User-centered wireframing, design systems, and interactive prototypes that make digital products effortless to navigate.',
-    },
-    {
-      icon: <FaLaptopCode className="text-2xl" />,
-      title: 'Website Design',
-      desc: 'Modern web experiences built with clean architecture, fast loading speeds, SEO best practices, and elegant aesthetics.',
+      icon: <FaCode className="text-2xl" />,
+      title: 'Full-Stack Development',
+      desc: 'Developing end-to-end web applications with seamless communication between robust backend services and modern reactive frontends.',
     },
     {
       icon: <FaLayerGroup className="text-2xl" />,
-      title: 'Enterprise Architecture',
-      desc: 'Designing and building scalable enterprise systems, modular ERP solutions, and resilient backend microservices.',
+      title: 'Frontend Architecture',
+      desc: 'Engineering modular, high-performance user interfaces using Vue.js (Vue 3 / Composition API), Angular, and Tailwind CSS.',
     },
     {
-      icon: <FaGem className="text-2xl" />,
-      title: 'Branding & Identity',
-      desc: 'Creating cohesive visual guidelines, typography pairings, color systems, and modern digital asset collections.',
+      icon: <FaNetworkWired className="text-2xl" />,
+      title: 'Enterprise ERP Systems',
+      desc: 'Architecting complex module-based ERP platforms, accounting, HR, workflow approvals, and citizen service platforms.',
     },
     {
-      icon: <FaVideo className="text-2xl" />,
-      title: 'Multimedia & Motion',
-      desc: 'Dynamic micro-animations, motion graphics, and presentation media that bring web applications vividly to life.',
+      icon: <FaDatabase className="text-2xl" />,
+      title: 'Database & Data Systems',
+      desc: 'Designing robust database schemas, query optimization, data migrations, and Jasper reporting with MySQL, PostgreSQL, and Oracle.',
+    },
+    {
+      icon: <FaDocker className="text-2xl" />,
+      title: 'DevOps & System Reliability',
+      desc: 'Containerizing applications with Docker, implementing CI/CD pipelines, optimizing system performance, and ensuring production uptime.',
     },
   ];
 
@@ -59,7 +59,7 @@ export default function Services() {
             Services
           </h2>
           <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-            Delivering end-to-end digital excellence across UI/UX design, modern full-stack development, and enterprise software engineering.
+            Specialized software engineering services delivering scalable backend architectures, reactive frontends, and enterprise solutions.
           </p>
         </motion.div>
 

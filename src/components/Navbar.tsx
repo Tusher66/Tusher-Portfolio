@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import Logo from './Logo';
 
 interface NavbarProps {
   activeSection?: string;
@@ -46,15 +47,13 @@ export default function Navbar({ activeSection = 'home' }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo matching Figma */}
+          {/* Logo brandmark */}
           <button
             onClick={() => scrollTo('home')}
-            className="flex items-center gap-1 text-2xl sm:text-3xl font-black tracking-wider text-white hover:opacity-90 transition-opacity cursor-pointer group"
+            className="cursor-pointer bg-transparent border-0 p-0 text-left"
+            aria-label="Back to home"
           >
-            <span className="text-white">LOG</span>
-            <span className="text-orange-accent group-hover:scale-110 inline-block transition-transform">
-              O
-            </span>
+            <Logo />
           </button>
 
           {/* Desktop Navigation */}

@@ -7,7 +7,7 @@ interface Project {
   id: number;
   title: string;
   category: string;
-  categoryType: 'website' | 'mobile' | 'desktop' | 'branding';
+  categoryType: 'erp' | 'fullstack' | 'backend' | 'automated';
   description: string;
   tech: string[];
   gradient: string;
@@ -22,18 +22,18 @@ export default function Projects() {
 
   const filterTabs = [
     { name: 'All', key: 'All' },
-    { name: 'Website Design', key: 'website' },
-    { name: 'App Mobile Design', key: 'mobile' },
-    { name: 'App Desktop', key: 'desktop' },
-    { name: 'Branding', key: 'branding' },
+    { name: 'Enterprise ERP', key: 'erp' },
+    { name: 'Full-Stack Apps', key: 'fullstack' },
+    { name: 'Backend & APIs', key: 'backend' },
+    { name: 'Automated Systems', key: 'automated' },
   ];
 
   const projects: Project[] = [
     {
       id: 1,
       title: 'RAISE Enterprise ERP',
-      category: 'Website Design',
-      categoryType: 'website',
+      category: 'Enterprise ERP',
+      categoryType: 'erp',
       description:
         'A comprehensive module-based ERP platform for the Wage Earners’ Welfare Board covering payroll, accounting, HR, reintegration, and financial assistance.',
       tech: ['Java Spring Boot', 'Vue.js 3', 'Tailwind CSS', 'WebSocket'],
@@ -43,21 +43,9 @@ export default function Projects() {
     },
     {
       id: 2,
-      title: 'Undercover Dark Portfolio',
-      category: 'Website Design',
-      categoryType: 'website',
-      description:
-        'A sleek, high-contrast dark aesthetic portfolio and design agency showcase with micro-interactions, smooth scroll, and glowing typography.',
-      tech: ['React', 'Framer Motion', 'Tailwind CSS', 'Figma'],
-      gradient: 'from-neutral-700/40 via-neutral-900 to-black',
-      liveUrl: 'https://github.com/Tusher66',
-      githubUrl: 'https://github.com/Tusher66',
-    },
-    {
-      id: 3,
-      title: 'Deeam Car Wash Mobile',
-      category: 'App Mobile Design',
-      categoryType: 'mobile',
+      title: 'Deeam Car Wash System',
+      category: 'Full-Stack Apps',
+      categoryType: 'fullstack',
       description:
         'A modern booking and fleet scheduling application supporting live slot management, real-time push notifications, client chat, and payment approvals.',
       tech: ['Vue.js 3', 'Spring Boot', 'REST APIs', 'PostgreSQL'],
@@ -66,38 +54,50 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 4,
-      title: 'Vehicle Inspection Desktop',
-      category: 'App Desktop',
-      categoryType: 'desktop',
+      id: 3,
+      title: 'Automated Vehicle Inspection',
+      category: 'Automated Systems',
+      categoryType: 'automated',
       description:
-        'A high-reliability BRTA desktop workflow system coordinating automated robotic device inspections, certificate generation, and inspection logs.',
-      tech: ['Spring Boot', 'Oracle SQL', 'JasperReports', 'Angular'],
+        'A high-reliability BRTA workflow system coordinating automated robotic device inspections, certificate generation, and inspection logs.',
+      tech: ['Spring Boot', 'Oracle SQL', 'JasperReports', 'Angular', 'SVN'],
       gradient: 'from-blue-900/30 via-indigo-950/30 to-neutral-900',
       liveUrl: 'https://github.com/Tusher66',
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 5,
+      id: 4,
       title: 'MV Tax Collection & Billing',
-      category: 'App Desktop',
-      categoryType: 'desktop',
+      category: 'Backend & APIs',
+      categoryType: 'backend',
       description:
         'Secure tax calculation and automated billing system handling millions of driving licence and vehicle registrations across national centers.',
-      tech: ['Java Spring Boot', 'PostgreSQL', 'Oracle', 'JDBC'],
+      tech: ['Java Spring Boot', 'PostgreSQL', 'Oracle', 'JDBC', 'Angular'],
       gradient: 'from-emerald-900/30 via-teal-950/30 to-neutral-900',
       liveUrl: 'https://github.com/Tusher66',
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 6,
-      title: 'Zalwa Modern Brand Identity',
-      category: 'Branding',
-      categoryType: 'branding',
+      id: 5,
+      title: 'BRTA Citizen Service Portal',
+      category: 'Full-Stack Apps',
+      categoryType: 'fullstack',
       description:
-        'A complete brand guideline system featuring luxury typography pairing, dark aesthetic design tokens, icon sets, and digital mockups.',
-      tech: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
+        'National service platform supporting driving licence registration, vehicle fitness appointments, online fee payments, and Jasper reporting.',
+      tech: ['Java Spring MVC', 'Oracle', 'JSP', 'JavaScript', 'JasperReports'],
       gradient: 'from-purple-900/30 via-fuchsia-950/30 to-neutral-900',
+      liveUrl: 'https://github.com/Tusher66',
+      githubUrl: 'https://github.com/Tusher66',
+    },
+    {
+      id: 6,
+      title: 'Undercover Dark Portfolio',
+      category: 'Enterprise ERP',
+      categoryType: 'erp',
+      description:
+        'A sleek, high-contrast dark aesthetic portfolio with micro-interactions, smooth scroll, and glowing typography.',
+      tech: ['React', 'Framer Motion', 'Tailwind CSS', 'TypeScript'],
+      gradient: 'from-neutral-700/40 via-neutral-900 to-black',
       liveUrl: 'https://github.com/Tusher66',
       githubUrl: 'https://github.com/Tusher66',
     },
@@ -122,7 +122,7 @@ export default function Projects() {
             Portfolio
           </h2>
           <p className="text-neutral-400 text-sm sm:text-base">
-            Selected showcase of web applications, mobile interfaces, desktop platforms, and design systems.
+            Selected showcase of enterprise software systems, full-stack applications, and scalable backend architectures.
           </p>
         </motion.div>
 

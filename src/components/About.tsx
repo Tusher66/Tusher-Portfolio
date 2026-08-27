@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaDownload } from 'react-icons/fa';
-import { SiFigma } from 'react-icons/si';
+import {
+  SiSpringboot,
+  SiVuedotjs,
+  SiAngular,
+  SiMysql,
+  SiDocker,
+} from 'react-icons/si';
+import myPic from '../assets/Images/myPic.jpg';
 
 interface CircularProgressProps {
   percentage: number;
@@ -64,7 +71,7 @@ function CircularProgress({
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-11 h-11 rounded-xl bg-[#1d1d1d] border border-neutral-700/70 flex items-center justify-center shadow-inner group-hover:border-orange-accent/50 transition-colors">
             {icon ? (
-              <span className="text-xl text-orange-accent">{icon}</span>
+              <span className="text-xl">{icon}</span>
             ) : (
               <span className={`font-bold text-sm font-sans ${textColor}`}>
                 {badgeText}
@@ -92,33 +99,29 @@ export default function About() {
 
   const skillsData = [
     {
-      label: 'Figma',
+      label: 'Java Spring Boot',
       percentage: 100,
-      icon: <SiFigma />,
+      icon: <SiSpringboot className="text-emerald-400" />,
     },
     {
-      label: 'Adobe XD',
+      label: 'Vue.js',
       percentage: 100,
-      badgeText: 'Xd',
-      textColor: 'text-pink-400',
+      icon: <SiVuedotjs className="text-emerald-500" />,
     },
     {
-      label: 'Adobe Photoshop',
+      label: 'Angular',
       percentage: 85,
-      badgeText: 'Ps',
-      textColor: 'text-sky-400',
+      icon: <SiAngular className="text-red-500" />,
     },
     {
-      label: 'Adobe Illustrator',
-      percentage: 60,
-      badgeText: 'Ai',
-      textColor: 'text-amber-500',
+      label: 'MySQL',
+      percentage: 90,
+      icon: <SiMysql className="text-sky-400" />,
     },
     {
-      label: 'Adobe Premiere',
-      percentage: 70,
-      badgeText: 'Pr',
-      textColor: 'text-purple-400',
+      label: 'Docker & DevOps',
+      percentage: 80,
+      icon: <SiDocker className="text-blue-400" />,
     },
   ];
 
@@ -139,7 +142,7 @@ export default function About() {
             About Me
           </h2>
           <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-            User Interface And User Experience And Also Video Editing
+            Full-Stack Software Engineer & Backend Specialist
           </p>
         </motion.div>
 
@@ -155,15 +158,13 @@ export default function About() {
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-orange-500/25 via-[#222222] to-[#161616] p-1.5 shadow-2xl">
                 <div className="w-full h-full rounded-full bg-[#161616] border border-neutral-800 flex items-center justify-center overflow-hidden relative">
-                  <svg
-                    className="w-44 h-44 sm:w-56 sm:h-56 text-neutral-400 transform translate-y-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
-                  <div className="absolute bottom-6 bg-[#222222] border border-orange-500/40 text-orange-accent text-xs font-bold px-4 py-1 rounded-full shadow-lg">
-                    Full-Stack & UI/UX
+                  <img
+                    src={myPic}
+                    alt="Md. Ismail Hossain Tusher"
+                    className="w-full h-full object-cover object-top rounded-full"
+                  />
+                  <div className="absolute bottom-6 bg-[#222222]/90 border border-orange-500/40 text-orange-accent text-xs font-bold px-4 py-1 rounded-full shadow-lg">
+                    Software Engineer
                   </div>
                 </div>
               </div>
@@ -178,11 +179,11 @@ export default function About() {
             className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             <p className="text-neutral-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6">
-              A software engineer, the modern-day architect of digital realms, navigates the ethereal landscapes of code, sculpting intangible structures that shape our technological world. With fingers poised over keyboards like virtuoso pianists, they compose symphonies of logic, their minds a labyrinth of algorithms and solutions. Their canvas is a screen, a vast expanse where lines of code dance in intricate patterns, breathing life into software applications.
+              A software engineer, the modern-day architect of digital realms, navigates the ethereal landscapes of code, sculpting intangible structures that shape our technological world. With fingers poised over keyboards like virtuoso pianists, they compose symphonies of logic, their minds a labyrinth of algorithms, scalable microservices, and reliable solutions. Their canvas is an IDE, where lines of code dance in intricate patterns, breathing life into enterprise software systems.
             </p>
 
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
-              With 3+ years of professional full-stack and UI/UX experience, I specialize in architecting scalable systems with Java Spring Boot, designing reactive frontends with Vue.js/React, and creating intuitive user interfaces in Figma.
+              With 3+ years of professional full-stack software engineering experience, I specialize in architecting scalable backend systems with Java Spring Boot, engineering reactive frontends with Vue.js & Angular, and building robust database architectures with MySQL, PostgreSQL, and Oracle SQL.
             </p>
 
             {/* Download CV button matching Figma */}

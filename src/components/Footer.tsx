@@ -8,6 +8,7 @@ import {
   FaPhoneAlt,
   FaArrowUp,
 } from 'react-icons/fa';
+import Logo from './Logo';
 
 export default function Footer() {
   const scrollTo = (id: string) => {
@@ -38,15 +39,13 @@ export default function Footer() {
   return (
     <footer className="bg-[#0e0e0e] text-white pt-16 pb-12 border-t border-neutral-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-        {/* Brand Logo matching Figma */}
+        {/* Brand Logo */}
         <button
           onClick={() => scrollTo('home')}
-          className="flex items-center gap-1 text-3xl font-black tracking-wider text-white hover:opacity-90 transition-opacity mb-8 cursor-pointer group"
+          className="mb-8 cursor-pointer bg-transparent border-0 p-0 text-left"
+          aria-label="Back to home"
         >
-          <span className="text-white">LOG</span>
-          <span className="text-orange-accent group-hover:scale-110 inline-block transition-transform">
-            O
-          </span>
+          <Logo />
         </button>
 
         {/* Navigation Links matching Figma */}
@@ -103,7 +102,7 @@ export default function Footer() {
         {/* Copyright & Attribution matching Figma */}
         <div className="flex flex-col sm:flex-row items-center justify-between w-full text-xs text-neutral-400 gap-4">
           <p>
-            Designed by <span className="text-neutral-300">@mahmood.fazile</span> UI/UX designer | Developed by <span className="text-orange-accent font-semibold">Md. Ismail Hossain Tusher</span>
+            © {new Date().getFullYear()} <span className="text-orange-accent font-semibold">Md. Ismail Hossain Tusher</span> — Full-Stack Software Engineer
           </p>
 
           <button

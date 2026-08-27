@@ -9,6 +9,7 @@ import {
   FaDownload,
   FaPaperPlane,
 } from 'react-icons/fa';
+import myPicture from '../assets/Images/myPicture.png';
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -79,12 +80,10 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-6 min-h-[60px] sm:min-h-[80px]"
             >
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-orange-accent leading-none">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-orange-accent leading-none">
                 <TypeAnimation
                   sequence={[
-                    'UI/UX designer',
-                    2500,
-                    'Full-Stack Dev',
+                    'Full-Stack Developer',
                     2500,
                     'Software Engineer',
                     2500,
@@ -103,7 +102,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="text-neutral-400 text-sm sm:text-base max-w-xl mb-8 leading-relaxed"
             >
-              Designing intuitive digital interfaces and engineering high-performance, scalable web systems. Passionate about building seamless user experiences with modern architecture.
+              Engineering high-performance, scalable backend systems and modern full-stack web applications. Passionate about clean architecture, reliable microservices, and robust software solutions.
             </motion.p>
 
             {/* Social Links Row */}
@@ -199,15 +198,13 @@ export default function Hero() {
                   <div className="relative z-10 w-64 h-80 sm:w-80 sm:h-96 flex flex-col items-center justify-center">
                     <div className="w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] border-2 border-orange-500/40 p-2 shadow-2xl flex items-center justify-center relative group">
                       <div className="w-full h-full rounded-full bg-[#171717] flex flex-col items-center justify-center text-center overflow-hidden relative">
-                        <svg
-                          className="w-32 h-32 sm:w-40 sm:h-40 text-neutral-300 transform translate-y-3"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                        </svg>
+                        <img
+                          src={myPicture}
+                          alt="Md. Ismail Hossain Tusher"
+                          className="w-full h-full object-cover object-top rounded-full"
+                        />
                         <div className="absolute bottom-3 bg-orange-accent/90 text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-md">
-                          Ismail Tusher
+                          Ismail Hossain Tusher
                         </div>
                       </div>
                     </div>
@@ -222,7 +219,7 @@ export default function Hero() {
                 className="absolute top-16 -left-4 sm:-left-6 px-3.5 py-2 bg-[#1c1c1c]/90 border border-orange-500/30 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-2.5 z-20"
               >
                 <span className="w-3 h-3 rounded-full bg-orange-accent animate-pulse" />
-                <span className="text-xs font-semibold text-white">UI/UX & Code</span>
+                <span className="text-xs font-semibold text-white">Vue js</span>
               </motion.div>
 
               <motion.div

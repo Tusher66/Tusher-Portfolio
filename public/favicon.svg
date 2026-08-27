@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" fill="none"><path d="M7 13.5 15 7h15l5 7v15l-8 6H14l-7-7.5V13.5Z" fill="url(#a)"/><path d="M14 14.5 10.5 21l3.5 6.5M28 14.5 31.5 21 28 27.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 15.5v11M16.3 15.5h4.4M16.3 26.5h4.4M24 15.5h3.2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="31" cy="11" r="3" fill="#B8FFE2"/><defs><linearGradient id="a" x1="8" y1="6" x2="34" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset=".52" stop-color="#087F79"/><stop offset="1" stop-color="#0C665D"/></linearGradient></defs></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <rect width="40" height="40" rx="10" fill="#181818" stroke="#FD5C02" stroke-width="1.5"/>
+  <path d="M9 14L14 9H26L31 14V26L26 31H14L9 26V14Z" stroke="#FD5C02" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <path d="M14 15.5H26M20 15.5V26" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="26" cy="15.5" r="2.2" fill="#FD5C02"/>
+</svg>
