@@ -200,11 +200,13 @@ export default function Hero() {
                   <div className="relative z-10 w-64 h-80 sm:w-80 sm:h-96 flex flex-col items-center justify-center">
                     <div className="w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] border-2 border-orange-500/40 p-2 shadow-2xl flex items-center justify-center relative group">
                       <div className="w-full h-full rounded-full bg-[#171717] flex flex-col items-center justify-center text-center overflow-hidden relative">
+                        
                         <img
                           src={myPicture}
                           alt="Md. Ismail Hossain Tusher"
                           className="w-full h-full object-cover object-top rounded-full"
                         />
+                        
                         <div className="absolute bottom-3 bg-orange-accent/90 text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-md">
                           Ismail Hossain Tusher
                         </div>
