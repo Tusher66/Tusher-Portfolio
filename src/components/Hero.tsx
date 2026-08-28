@@ -32,9 +32,9 @@ export default function Hero() {
   ];
 
   const stats = [
-    { number: '3+', label: 'Years Experience' },
-    { number: '20+', label: 'Projects Completed' },
-    { number: '15+', label: 'Happy Clients' },
+    { number: '4+', label: 'Years Experience' },
+    { number: '27+', label: 'Projects Completed' },
+    { number: '31+', label: 'Happy Clients' },
   ];
 
   return (
