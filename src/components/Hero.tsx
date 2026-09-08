@@ -20,10 +20,13 @@ export default function Hero() {
           behavior: 'smooth',
         });
       } else {
-        element.scrollIntoView({ behavior: 'smooth' });
+        container.scrollTo({
+          top: element.offsetTop,
+          behavior: 'smooth',
+        });
       }
     } else if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 

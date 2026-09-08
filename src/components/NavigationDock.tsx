@@ -9,9 +9,13 @@ import {
 
 interface NavigationDockProps {
   activeSection: string;
+  setActiveSection?: (id: string) => void;
 }
 
-export default function NavigationDock({ activeSection = 'home' }: NavigationDockProps) {
+export default function NavigationDock({
+  activeSection = 'home',
+  setActiveSection,
+}: NavigationDockProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -32,6 +36,9 @@ export default function NavigationDock({ activeSection = 'home' }: NavigationDoc
   ];
 
   const scrollTo = (id: string) => {
+    if (setActiveSection) {
+      setActiveSection(id);
+    }
     const element = document.getElementById(id);
     const container = document.getElementById('horizontal-container');
     if (element && container) {
@@ -41,10 +48,13 @@ export default function NavigationDock({ activeSection = 'home' }: NavigationDoc
           behavior: 'smooth',
         });
       } else {
-        element.scrollIntoView({ behavior: 'smooth' });
+        container.scrollTo({
+          top: element.offsetTop,
+          behavior: 'smooth',
+        });
       }
     } else if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -80,8 +90,8 @@ export default function NavigationDock({ activeSection = 'home' }: NavigationDoc
         })}
       </nav>
 
-      {/* Mobile / Tablet Bottom Dock Bar */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex lg:hidden bg-[#1e1e1e]/95 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full shadow-2xl gap-3 sm:gap-4">
+      {/* Mobile / Tablet Bottom Dock Bar - Touch Friendly & High Z-Index */}
+      <nav className="fixed bottom-3.5 left-1/2 -translate-x-1/2 z-[999] flex lg:hidden bg-[#1a1a1a]/95 backdrop-blur-2xl border border-white/15 px-3.5 py-2 rounded-full shadow-2xl gap-2.5 sm:gap-3.5 items-center">
         {navItems.map((item) => {
           const isActive = activeSection === item.id;
           return (
@@ -89,10 +99,10 @@ export default function NavigationDock({ activeSection = 'home' }: NavigationDoc
               key={item.id}
               onClick={() => scrollTo(item.id)}
               aria-label={item.label}
-              className={`w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all cursor-pointer ${
+              className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-sm sm:text-base transition-all duration-200 cursor-pointer touch-manipulation active:scale-95 ${
                 isActive
-                  ? 'bg-accent text-white scale-110 shadow-md'
-                  : 'bg-[#2b2b2b] text-neutral-400 hover:text-white'
+                  ? 'bg-accent text-white scale-105 shadow-lg font-bold ring-2 ring-white/25'
+                  : 'bg-[#262626] text-neutral-300 hover:text-white hover:bg-[#333333]'
               }`}
             >
               {item.icon}

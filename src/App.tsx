@@ -35,7 +35,7 @@ export default function App() {
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
 
-  // Track Active Section based on Horizontal or Vertical Scroll
+  // Track Active Section based on Horizontal (Desktop) or Vertical (Mobile) Container Scroll
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -47,16 +47,25 @@ export default function App() {
         const scrollPos = container.scrollLeft + container.clientWidth / 2;
         for (let i = sections.length - 1; i >= 0; i--) {
           const el = document.getElementById(sections[i]);
-          if (el && scrollPos >= el.offsetLeft) {
+          if (el && scrollPos >= el.offsetLeft - 100) {
             setActiveSection(sections[i]);
             break;
           }
         }
       } else {
-        const scrollPos = window.scrollY + 250;
+        // Mobile vertical scroll position
+        const isNearBottom =
+          container.scrollTop + container.clientHeight >= container.scrollHeight - 60;
+        
+        if (isNearBottom) {
+          setActiveSection('contact');
+          return;
+        }
+
+        const scrollPos = container.scrollTop + container.clientHeight / 3;
         for (let i = sections.length - 1; i >= 0; i--) {
           const el = document.getElementById(sections[i]);
-          if (el && scrollPos >= el.offsetTop) {
+          if (el && scrollPos >= el.offsetTop - 50) {
             setActiveSection(sections[i]);
             break;
           }
@@ -65,21 +74,19 @@ export default function App() {
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="relative min-h-screen bg-[#111111] text-white selection:bg-accent selection:text-white overflow-hidden">
       <ScrollProgress />
       <ColorSwitcher />
-      <NavigationDock activeSection={activeSection} />
+      <NavigationDock
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
 
-      {/* Main Horizontal Layout Container matching Salimov */}
+      {/* Main Horizontal (Desktop) / Vertical (Mobile) Layout Container */}
       <div
         id="horizontal-container"
         ref={containerRef}
