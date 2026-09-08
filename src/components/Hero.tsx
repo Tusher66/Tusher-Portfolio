@@ -7,7 +7,7 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from 'react-icons/fa';
-import myPic from '../assets/Images/myPic.jpg';
+import myPicture from '../assets/Images/myPicture.png';
 
 export default function Hero() {
   const scrollToAbout = () => {
@@ -40,30 +40,23 @@ export default function Hero() {
       className="horizontal-section-panel bg-[#111111]"
     >
       <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
-        {/* Left Column: Salimov Geometric / Polygonal Frame Portrait */}
+        {/* Left Column: Transparent Cutout Portrait without background box */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: -30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="lg:col-span-5 flex justify-center"
+          className="lg:col-span-5 flex justify-center relative"
         >
-          <div className="salimov-portrait-wrapper group relative">
+          {/* Subtle Ambient Backlight Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 sm:w-72 sm:h-72 bg-accent/15 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Clean Floating Cutout Portrait */}
+          <div className="relative w-full max-w-[300px] sm:max-w-[340px] max-h-[60vh] flex items-center justify-center z-10">
             <img
-              src={myPic}
+              src={myPicture}
               alt="Md. Ismail Hossain Tusher"
-              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-auto max-h-[58vh] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)] filter hover:scale-105 transition-transform duration-500"
             />
-            {/* Gradient Shade at bottom of portrait */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80" />
-            
-            {/* Floating Tag */}
-            <div className="absolute bottom-4 left-4 right-4 bg-[#1a1a1a]/95 backdrop-blur-md border border-white/10 rounded-2xl p-3 flex items-center justify-between">
-              <div>
-                <p className="text-white font-bold text-sm">Md. Ismail Hossain Tusher</p>
-                <p className="text-accent text-xs font-medium">B.Sc. ICE (BAUET) • Software Engineer</p>
-              </div>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            </div>
           </div>
         </motion.div>
 

@@ -15,7 +15,7 @@ export default function Education() {
     {
       period: 'Nov 2023 – Present',
       role: 'Software Engineer',
-      company: 'Goonj Technologies Ltd.',
+      company: 'Computer Networks Limited (CNS)',
       bullets: [
         'Scalable backend microservices using Java Spring Boot and REST APIs.',
         'Dynamic web interfaces with Vue.js, Vuex, and Nuxt.js.',
@@ -25,21 +25,12 @@ export default function Education() {
     {
       period: 'Mar 2022 – Oct 2023',
       role: 'Junior Software Engineer',
-      company: 'Kaz Software',
+      company: 'Jobdesk ltd',
       bullets: [
         'Enterprise web apps with Spring Boot, Hibernate, and PostgreSQL.',
         'JWT authentication, RBAC, and unit testing with JUnit & Mockito.',
       ],
-    },
-    {
-      period: 'Oct 2021 – Feb 2022',
-      role: 'Software Engineer Intern',
-      company: 'Brain Station 23',
-      bullets: [
-        'Assisted in Java web service development and DB schema modeling.',
-        'Frontend UI components using JavaScript and Vue.js.',
-      ],
-    },
+    }
   ];
 
   const educations = [
