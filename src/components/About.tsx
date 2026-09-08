@@ -27,8 +27,8 @@ function CircularProgress({
   inView,
   delay = 0,
 }: CircularProgressProps) {
-  const radius = 42;
-  const stroke = 5.5;
+  const radius = 34;
+  const stroke = 4.5;
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = inView
@@ -37,7 +37,7 @@ function CircularProgress({
 
   return (
     <div className="flex flex-col items-center group">
-      <div className="relative w-24 h-24 sm:w-26 sm:h-26 flex items-center justify-center">
+      <div className="relative w-18 h-18 sm:w-20 sm:h-20 flex items-center justify-center">
         <svg height={radius * 2} width={radius * 2} className="transform -rotate-90">
           <circle
             stroke="#2b2b2b"
@@ -64,21 +64,21 @@ function CircularProgress({
 
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {icon ? (
-            <span className="text-lg sm:text-xl text-neutral-300 group-hover:text-accent transition-colors">
+            <span className="text-base sm:text-lg text-neutral-300 group-hover:text-accent transition-colors">
               {icon}
             </span>
           ) : (
-            <span className="font-bold text-xs sm:text-sm text-neutral-200">
+            <span className="font-bold text-[10px] text-neutral-200">
               {percentage}%
             </span>
           )}
         </div>
       </div>
 
-      <p className="text-lg font-bold text-accent mt-1.5 font-display">
+      <p className="text-sm sm:text-base font-bold text-accent mt-1 font-display leading-none">
         {percentage}%
       </p>
-      <p className="text-neutral-300 font-semibold text-[11px] sm:text-xs mt-0.5 text-center uppercase tracking-wider">
+      <p className="text-neutral-300 font-semibold text-[10px] sm:text-[11px] mt-0.5 text-center uppercase tracking-wider">
         {label}
       </p>
     </div>
@@ -127,7 +127,7 @@ export default function About() {
       id="about"
       className="horizontal-section-panel bg-[#111111]"
     >
-      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto">
+      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto flex flex-col justify-center">
         {/* Salimov Signature Watermark Title */}
         <div className="salimov-title-wrap">
           <span className="salimov-watermark">RESUME</span>
@@ -137,23 +137,23 @@ export default function About() {
         </div>
 
         {/* 2-Column Info & Stats Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-6">
           {/* Left Column: Personal Information Data List */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -25 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
             className="lg:col-span-6"
           >
-            <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wider mb-5">
+            <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wider mb-3">
               Personal Infos
             </h3>
 
-            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3.5 mb-6">
+            <div className="grid sm:grid-cols-2 gap-x-4 gap-y-2 mb-4">
               {/* Column 1 */}
-              <div className="space-y-3">
+              <div className="space-y-1.5">
                 {personalInfoLeft.map((info) => (
-                  <div key={info.label} className="text-xs sm:text-sm">
+                  <div key={info.label} className="text-xs">
                     <span className="text-neutral-400 font-medium">{info.label} : </span>
                     <span
                       className={`font-semibold ${
@@ -167,9 +167,9 @@ export default function About() {
               </div>
 
               {/* Column 2 */}
-              <div className="space-y-3">
+              <div className="space-y-1.5">
                 {personalInfoRight.map((info) => (
-                  <div key={info.label} className="text-xs sm:text-sm truncate">
+                  <div key={info.label} className="text-xs truncate">
                     <span className="text-neutral-400 font-medium">{info.label} : </span>
                     {info.isLink ? (
                       <a
@@ -195,30 +195,30 @@ export default function About() {
             >
               <span>DOWNLOAD CV</span>
               <span className="salimov-btn-icon">
-                <FaDownload className="text-sm" />
+                <FaDownload className="text-xs" />
               </span>
             </a>
           </motion.div>
 
           {/* Right Column: 4 Salimov Stat Boxes (2x2 Grid) */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 25 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-6 grid grid-cols-2 gap-3.5 sm:gap-5"
+            className="lg:col-span-6 grid grid-cols-2 gap-3"
           >
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-                className="salimov-stat-box flex flex-col justify-between min-h-[120px] sm:min-h-[140px]"
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                className="salimov-stat-box flex flex-col justify-between"
               >
                 <div className="salimov-stat-number">{stat.number}</div>
-                <div className="flex items-center gap-2 mt-1.5">
-                  <span className="w-5 h-0.5 bg-accent shrink-0" />
-                  <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="w-4 h-0.5 bg-accent shrink-0" />
+                  <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-neutral-300">
                     {stat.label}
                   </p>
                 </div>
@@ -228,19 +228,15 @@ export default function About() {
         </div>
 
         {/* Divider */}
-        <div className="w-full max-w-lg mx-auto h-px bg-white/10 mb-10" />
+        <div className="w-full max-w-sm mx-auto h-px bg-white/10 mb-5" />
 
         {/* Skills Section */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <h3 className="text-center text-lg sm:text-xl font-bold text-white uppercase tracking-wider mb-8">
-            My <span className="text-accent">Skills</span>
-          </h3>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6 justify-center">
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 sm:gap-4 justify-center">
             {skillsData.map((skill, index) => (
               <CircularProgress
                 key={skill.label}
@@ -248,7 +244,7 @@ export default function About() {
                 percentage={skill.percentage}
                 icon={skill.icon}
                 inView={inView}
-                delay={index * 0.08}
+                delay={index * 0.05}
               />
             ))}
           </div>

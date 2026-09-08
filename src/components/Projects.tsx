@@ -121,7 +121,7 @@ export default function Projects() {
       id="portfolio"
       className="horizontal-section-panel bg-[#111111]"
     >
-      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto">
+      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto flex flex-col justify-center">
         {/* Salimov Watermark Title */}
         <div className="salimov-title-wrap">
           <span className="salimov-watermark">WORKS</span>
@@ -131,16 +131,16 @@ export default function Projects() {
         </div>
 
         {/* Filter Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-4 sm:mb-6">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.key;
             return (
               <button
                 key={tab.key}
                 onClick={() => setActiveFilter(tab.key)}
-                className={`px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                className={`px-3.5 sm:px-4 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'bg-accent text-white shadow-lg'
+                    ? 'bg-accent text-white shadow-md'
                     : 'bg-[#252525] text-neutral-300 hover:text-white hover:bg-[#2e2e2e]'
                 }`}
               >
@@ -150,10 +150,10 @@ export default function Projects() {
           })}
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Project Cards Grid - Compact 3x2 Grid Fitted to Screen */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
         >
           <AnimatePresence>
             {filteredProjects.map((project) => (
@@ -163,43 +163,36 @@ export default function Projects() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.35 }}
+                transition={{ duration: 0.3 }}
                 onClick={() => setSelectedProject(project)}
                 className="salimov-card overflow-hidden group cursor-pointer flex flex-col"
               >
                 {/* Visual Preview Area */}
                 <div
-                  className={`relative h-48 sm:h-52 bg-gradient-to-br ${project.gradient} p-5 flex flex-col justify-between border-b border-white/5 overflow-hidden`}
+                  className={`relative h-28 sm:h-32 bg-gradient-to-br ${project.gradient} p-3 flex flex-col justify-between border-b border-white/5 overflow-hidden`}
                 >
                   <div className="flex items-center justify-between z-10">
-                    <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-bold text-accent uppercase tracking-wider">
+                    <span className="px-2 py-0.5 bg-black/60 backdrop-blur-md rounded-full text-[9px] font-bold text-accent uppercase tracking-wider">
                       {project.category}
                     </span>
-                    <div className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-neutral-300 group-hover:text-accent group-hover:scale-110 transition-all">
-                      <FaExternalLinkAlt className="text-[10px]" />
+                    <div className="w-6 h-6 rounded-full bg-black/60 flex items-center justify-center text-neutral-300 group-hover:text-accent group-hover:scale-110 transition-all">
+                      <FaExternalLinkAlt className="text-[9px]" />
                     </div>
                   </div>
 
                   {/* Stylized Mockup Preview Box */}
                   <div className="my-auto z-10">
-                    <div className="bg-[#181818]/90 border border-white/10 rounded-xl p-3 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
-                      <div className="flex items-center gap-1.5 mb-1.5">
-                        <span className="w-2 h-2 rounded-full bg-red-500/80" />
-                        <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
-                        <span className="w-2 h-2 rounded-full bg-green-500/80" />
-                      </div>
-                      <p className="text-[11px] font-mono text-neutral-200 truncate font-semibold">
-                        // {project.title}
-                      </p>
-                    </div>
+                    <p className="text-[10px] font-mono text-neutral-200 truncate font-semibold bg-[#181818]/90 border border-white/10 rounded-md px-2 py-1">
+                      // {project.title}
+                    </p>
                   </div>
 
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-1 z-10">
-                    {project.tech.slice(0, 3).map((t) => (
+                    {project.tech.slice(0, 2).map((t) => (
                       <span
                         key={t}
-                        className="text-[9px] font-semibold bg-black/50 text-neutral-300 px-1.5 py-0.5 rounded border border-white/10"
+                        className="text-[8px] font-semibold bg-black/50 text-neutral-300 px-1.5 py-0.5 rounded border border-white/10"
                       >
                         {t}
                       </span>
@@ -208,24 +201,13 @@ export default function Projects() {
                 </div>
 
                 {/* Card Meta Info */}
-                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-[#252525]">
-                  <div>
-                    <h3 className="text-base font-bold text-white mb-1 group-hover:text-accent transition-colors uppercase tracking-tight">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-neutral-400 line-clamp-2">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px]">
-                    <span className="font-semibold text-accent uppercase tracking-wider">
-                      {project.category}
-                    </span>
-                    <span className="group-hover:translate-x-1 transition-transform text-neutral-300 font-semibold">
-                      VIEW DETAILS →
-                    </span>
-                  </div>
+                <div className="p-2.5 sm:p-3 flex items-center justify-between bg-[#252525] text-[11px]">
+                  <h3 className="font-bold text-white group-hover:text-accent transition-colors uppercase tracking-tight truncate mr-2">
+                    {project.title}
+                  </h3>
+                  <span className="text-[10px] text-accent font-semibold whitespace-nowrap group-hover:translate-x-0.5 transition-transform">
+                    VIEW →
+                  </span>
                 </div>
               </motion.article>
             ))}
@@ -248,7 +230,7 @@ export default function Projects() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#1e1e1e] border border-white/10 rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto"
+              className="bg-[#1e1e1e] border border-white/10 rounded-2xl max-w-xl w-full p-6 sm:p-7 shadow-2xl relative max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               <button
@@ -258,7 +240,7 @@ export default function Projects() {
                 <FaTimes />
               </button>
 
-              <div className="salimov-title-wrap mb-5 text-left">
+              <div className="salimov-title-wrap mb-4 text-left">
                 <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
                   {selectedProject.category}
                 </span>
@@ -268,33 +250,33 @@ export default function Projects() {
               </div>
 
               {/* Salimov Meta Table */}
-              <div className="grid grid-cols-2 gap-3 mb-5 bg-[#252525] p-3.5 rounded-xl border border-white/5 text-xs">
+              <div className="grid grid-cols-2 gap-2.5 mb-4 bg-[#252525] p-3 rounded-xl border border-white/5 text-xs">
                 <div>
-                  <span className="text-neutral-400 block font-medium">Project :</span>
+                  <span className="text-neutral-400 block font-medium text-[11px]">Project :</span>
                   <span className="text-white font-semibold">{selectedProject.category}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-400 block font-medium">Client :</span>
+                  <span className="text-neutral-400 block font-medium text-[11px]">Client :</span>
                   <span className="text-white font-semibold">{selectedProject.client}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-400 block font-medium">Duration :</span>
+                  <span className="text-neutral-400 block font-medium text-[11px]">Duration :</span>
                   <span className="text-white font-semibold">{selectedProject.duration}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-400 block font-medium">Code Base :</span>
+                  <span className="text-neutral-400 block font-medium text-[11px]">Code Base :</span>
                   <span className="text-white font-semibold">GitHub Repository</span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-5">
+              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-4">
                 {selectedProject.description}
               </p>
 
               {/* Frameworks / Tech */}
-              <div className="mb-6">
-                <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
+              <div className="mb-5">
+                <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-1.5">
                   Frameworks & Technologies
                 </p>
                 <div className="flex flex-wrap gap-1.5">

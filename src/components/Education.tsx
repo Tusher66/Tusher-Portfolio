@@ -5,7 +5,6 @@ import {
   FaGraduationCap,
   FaFilePdf,
   FaExternalLinkAlt,
-  FaQuoteLeft,
   FaScroll,
 } from 'react-icons/fa';
 
@@ -16,30 +15,29 @@ export default function Education() {
     {
       period: 'Nov 2023 – Present',
       role: 'Software Engineer',
-      company: 'Goonj Technologies Ltd. — Dhaka, Bangladesh',
+      company: 'Goonj Technologies Ltd.',
       bullets: [
-        'Developed and maintained scalable backend microservices using Java Spring Boot and REST APIs.',
-        'Built dynamic, responsive web interfaces with Vue.js, Vuex, and Nuxt.js.',
-        'Optimized SQL database queries and caching strategies with Redis for high-throughput services.',
+        'Scalable backend microservices using Java Spring Boot and REST APIs.',
+        'Dynamic web interfaces with Vue.js, Vuex, and Nuxt.js.',
+        'Optimized SQL database queries and caching with Redis.',
       ],
     },
     {
       period: 'Mar 2022 – Oct 2023',
       role: 'Junior Software Engineer',
-      company: 'Kaz Software — Dhaka, Bangladesh',
+      company: 'Kaz Software',
       bullets: [
-        'Contributed to enterprise-level web applications using Java Spring Boot, Hibernate ORM, and PostgreSQL.',
-        'Implemented JWT authentication, RBAC, and unit/integration testing with JUnit and Mockito.',
-        'Worked on cloud deployment workflows and CI/CD pipelines.',
+        'Enterprise web apps with Spring Boot, Hibernate, and PostgreSQL.',
+        'JWT authentication, RBAC, and unit testing with JUnit & Mockito.',
       ],
     },
     {
       period: 'Oct 2021 – Feb 2022',
       role: 'Software Engineer Intern',
-      company: 'Brain Station 23 — Dhaka, Bangladesh',
+      company: 'Brain Station 23',
       bullets: [
-        'Assisted in enterprise Java web service development and relational database schema modeling.',
-        'Collaborated on frontend UI components using HTML, CSS, JavaScript, and Vue.js.',
+        'Assisted in Java web service development and DB schema modeling.',
+        'Frontend UI components using JavaScript and Vue.js.',
       ],
     },
   ];
@@ -47,31 +45,30 @@ export default function Education() {
   const educations = [
     {
       period: '2016 – 2020',
-      degree: 'B.Sc. in Information & Communication Engineering',
-      institution: 'Bangladesh Army University of Engineering & Technology (BAUET)',
+      degree: 'B.Sc. in ICE',
+      institution: 'BAUET (Qadirabad Cantonment)',
       result: 'CGPA: 3.54 / 4.00 (Distinction)',
       bullets: [
-        'Specialized in software engineering, algorithms, data communication, and antenna design systems.',
-        'Thesis: “A Meander Line Omni-directional Loop Antenna Design for Biomedical Application”.',
-        'Published paper in BAUET JOURNAL, Vol. 02, Iss. 02, pp. 104-116, July 2020.',
+        'Algorithms, data communication, and antenna design systems.',
+        'Thesis on “Meander Line Omni-directional Loop Antenna Design”.',
       ],
     },
     {
       period: '2012 – 2014',
-      degree: 'Higher Secondary Certificate (HSC)',
-      institution: 'Government Shaheed Bulbul College — Pabna, Bangladesh',
+      degree: 'HSC (Science)',
+      institution: 'Govt. Shaheed Bulbul College, Pabna',
       result: 'GPA: 4.70 / 5.00',
       bullets: [
-        'Science group curriculum covering Mathematics, Physics, Chemistry, and Biology.',
+        'Science curriculum: Math, Physics, Chemistry, Biology.',
       ],
     },
     {
       period: '2011 – 2012',
-      degree: 'Secondary School Certificate (SSC)',
-      institution: 'TSC — Pabna, Bangladesh',
+      degree: 'SSC (Science)',
+      institution: 'TSC, Pabna',
       result: 'GPA: 5.00 / 5.00 (A+)',
       bullets: [
-        'Achieved perfect GPA 5.00 in Science and Higher Mathematics.',
+        'Top board result in Science & Higher Mathematics.',
       ],
     },
   ];
@@ -83,16 +80,13 @@ export default function Education() {
     date: 'July 2020',
     authors: 'I H Tusher, M Samad',
     thesisTitle: 'A Meander Line Omni-directional Loop Antenna Design for Biomedical Application',
-    institution: 'Bangladesh Army University of Engineering and Technology (BAUET)',
+    institution: 'Bangladesh Army University of Engineering & Technology (BAUET)',
     pdfUrl: 'https://journal.bauet.ac.bd/wp-content/uploads/2020/11/22_Article-9.pdf',
-    citation:
-      'I H Tusher, M Samad, “Design of a Meander Line Omni-directional Loop Antenna for Biomedical Applications”, in BAUET JOURNAL, vol. 02, iss. 02, pp.104-116, July 2020.',
     tags: [
       'Biomedical Telemetry',
       'Antenna Design',
-      'Omni-directional Loop',
       'BAUET Journal',
-      'Peer-Reviewed PDF',
+      'Peer-Reviewed',
     ],
   };
 
@@ -101,7 +95,7 @@ export default function Education() {
       id="education"
       className="horizontal-section-panel bg-[#111111]"
     >
-      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto">
+      <div ref={ref} className="max-w-7xl w-full mx-auto my-auto flex flex-col justify-center">
         {/* Salimov Watermark Title */}
         <div className="salimov-title-wrap">
           <span className="salimov-watermark">EXPERIENCE</span>
@@ -110,190 +104,173 @@ export default function Education() {
           </h2>
         </div>
 
-        {/* Featured Research & Thesis Spotlight Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <div className="salimov-card p-5 sm:p-7 border border-white/10 relative overflow-hidden bg-gradient-to-br from-[#1e1e1e] to-[#171717]">
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5 mb-5">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-accent/15 border border-accent/40 flex items-center justify-center text-accent shrink-0">
-                  <FaScroll className="text-lg" />
-                </div>
-                <div>
-                  <span className="salimov-timeline-badge mb-0.5">
-                    Peer-Reviewed Journal & Thesis
-                  </span>
-                  <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wider">
-                    Published Research & B.Sc. Thesis
-                  </h3>
-                </div>
-              </div>
-
-              {/* Direct PDF Button */}
-              <a
-                href={publication.pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="salimov-btn"
-              >
-                <span>READ PAPER (PDF)</span>
-                <span className="salimov-btn-icon">
-                  <FaFilePdf className="text-sm" />
-                </span>
-              </a>
-            </div>
-
-            {/* Paper Title & Citation details */}
-            <div className="space-y-3.5 mb-5">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-0.5">
-                  Journal Article Title
-                </p>
-                <a
-                  href={publication.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm sm:text-lg font-extrabold text-white hover:text-accent transition-colors leading-snug inline-flex items-start gap-2 group"
-                >
-                  <span>“{publication.title}”</span>
-                  <FaExternalLinkAlt className="text-xs text-accent opacity-70 group-hover:opacity-100 mt-1 shrink-0" />
-                </a>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                <div className="bg-[#242424] p-3 rounded-xl border border-white/5">
-                  <span className="text-neutral-400 block text-[11px] mb-0.5">Authors</span>
-                  <span className="text-white font-semibold">{publication.authors}</span>
-                </div>
-                <div className="bg-[#242424] p-3 rounded-xl border border-white/5">
-                  <span className="text-neutral-400 block text-[11px] mb-0.5">Venue & Issue</span>
-                  <span className="text-white font-semibold">
-                    {publication.journal}, {publication.volume} ({publication.date})
-                  </span>
-                </div>
-              </div>
-
-              {/* Thesis Info */}
-              <div className="bg-[#222222] border border-white/5 p-3.5 rounded-xl">
-                <p className="text-[11px] font-bold text-accent uppercase tracking-wider mb-0.5">
-                  Undergraduate Thesis
-                </p>
-                <p className="text-xs sm:text-sm text-neutral-200 font-medium">
-                  Thesis on “{publication.thesisTitle}”
-                </p>
-                <p className="text-[11px] text-neutral-400 mt-0.5">
-                  Department of Information and Communication Engineering, {publication.institution}
-                </p>
-              </div>
-
-              {/* Citation */}
-              <div className="bg-[#1b1b1b] border border-white/5 p-3.5 rounded-xl flex items-start gap-2.5">
-                <FaQuoteLeft className="text-accent text-sm shrink-0 mt-0.5 opacity-80" />
-                <div className="flex-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-0.5">
-                    Citation
-                  </p>
-                  <p className="text-xs font-mono text-neutral-300">
-                    {publication.citation}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
-              {publication.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[11px] font-medium bg-[#222222] text-neutral-300 px-2.5 py-0.5 rounded-full border border-white/10"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Dual Timelines: Experience (Left) & Education (Right) */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Experience Column */}
+        {/* 3-Column Screen-Fitted Grid: [Research Spotlight] | [Experience] | [Education] */}
+        <div className="grid lg:grid-cols-12 gap-5 items-stretch">
+          {/* Column 1: Featured Research & Thesis Spotlight Box (4 Cols) */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-4 flex flex-col"
           >
-            <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wider mb-6 flex items-center gap-2">
-              <span>Experience</span>
-            </h3>
-
-            <div className="space-y-1">
-              {experiences.map((exp, i) => (
-                <div key={i} className="salimov-timeline-item">
-                  <div className="salimov-timeline-icon">
-                    <FaBriefcase />
+            <div className="salimov-card p-4 sm:p-5 border border-white/10 flex flex-col justify-between h-full bg-gradient-to-br from-[#1e1e1e] to-[#161616]">
+              <div>
+                <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full bg-accent/15 border border-accent/40 flex items-center justify-center text-accent shrink-0">
+                      <FaScroll className="text-sm" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-accent block">
+                        Featured Publication
+                      </span>
+                      <h4 className="text-xs sm:text-sm font-bold text-white uppercase">
+                        Journal & Thesis
+                      </h4>
+                    </div>
                   </div>
-                  <span className="salimov-timeline-badge">{exp.period}</span>
-                  <h4 className="text-base font-bold text-white uppercase tracking-tight mb-0.5">
-                    {exp.role}{' '}
-                    <span className="text-xs text-accent font-semibold lowercase">
-                      — {exp.company.split('—')[0]}
-                    </span>
-                  </h4>
-                  <p className="text-xs text-neutral-400 mb-2">{exp.company}</p>
-                  <ul className="space-y-1 text-xs sm:text-sm text-neutral-300">
-                    {exp.bullets.map((b, bi) => (
-                      <li key={bi} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+
+                  <a
+                    href={publication.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 rounded-full bg-accent text-white text-[10px] font-bold uppercase tracking-wider hover:opacity-90 inline-flex items-center gap-1 shrink-0"
+                  >
+                    <FaFilePdf /> PDF
+                  </a>
                 </div>
-              ))}
+
+                {/* Article Details */}
+                <div className="space-y-2 mb-3">
+                  <a
+                    href={publication.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-bold text-white hover:text-accent transition-colors leading-snug line-clamp-2 block group"
+                  >
+                    “{publication.title}”
+                    <FaExternalLinkAlt className="text-[9px] text-accent inline ml-1.5 opacity-70" />
+                  </a>
+
+                  <div className="bg-[#242424] p-2.5 rounded-lg text-[11px]">
+                    <span className="text-neutral-400 block text-[10px]">Authors & Venue</span>
+                    <p className="text-neutral-200 font-medium">
+                      {publication.authors} • <span className="text-accent">{publication.journal}</span> ({publication.date})
+                    </p>
+                  </div>
+
+                  <div className="bg-[#1f1f1f] border border-white/5 p-2.5 rounded-lg text-[11px]">
+                    <span className="text-[10px] font-bold text-accent uppercase block">
+                      Undergraduate Thesis
+                    </span>
+                    <p className="text-neutral-300 font-medium line-clamp-2">
+                      “{publication.thesisTitle}”
+                    </p>
+                    <p className="text-[10px] text-neutral-400 mt-0.5">
+                      Dept. of ICE, {publication.institution}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1 pt-2 border-t border-white/5">
+                {publication.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[9px] font-medium bg-[#242424] text-neutral-300 px-2 py-0.5 rounded-full border border-white/10"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Education Column */}
+          {/* Column 2: Experience Timeline (4 Cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-4 flex flex-col"
           >
-            <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wider mb-6 flex items-center gap-2">
-              <span>Education</span>
-            </h3>
+            <div className="salimov-card p-4 sm:p-5 border border-white/10 flex flex-col justify-between h-full bg-[#1c1c1c]">
+              <div>
+                <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+                  <FaBriefcase className="text-accent text-xs" />
+                  <span>Experience</span>
+                </h3>
 
-            <div className="space-y-1">
-              {educations.map((edu, i) => (
-                <div key={i} className="salimov-timeline-item">
-                  <div className="salimov-timeline-icon">
-                    <FaGraduationCap />
-                  </div>
-                  <span className="salimov-timeline-badge">{edu.period}</span>
-                  <h4 className="text-base font-bold text-white uppercase tracking-tight mb-0.5">
-                    {edu.degree}
-                  </h4>
-                  <p className="text-xs text-accent font-semibold mb-0.5">
-                    {edu.institution}
-                  </p>
-                  <p className="text-xs text-emerald-400 font-semibold mb-2">
-                    {edu.result}
-                  </p>
-                  <ul className="space-y-1 text-xs sm:text-sm text-neutral-300">
-                    {edu.bullets.map((b, bi) => (
-                      <li key={bi} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="space-y-1">
+                  {experiences.map((exp, i) => (
+                    <div key={i} className="salimov-timeline-item">
+                      <div className="salimov-timeline-icon">
+                        <FaBriefcase />
+                      </div>
+                      <span className="salimov-timeline-badge">{exp.period}</span>
+                      <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-tight">
+                        {exp.role}{' '}
+                        <span className="text-[10px] text-accent font-semibold lowercase">
+                          — {exp.company}
+                        </span>
+                      </h4>
+                      <ul className="space-y-0.5 text-[11px] text-neutral-300 mt-1">
+                        {exp.bullets.slice(0, 2).map((b, bi) => (
+                          <li key={bi} className="flex items-start gap-1.5 leading-tight">
+                            <span className="w-1 h-1 rounded-full bg-accent mt-1.5 shrink-0" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Column 3: Education Timeline (4 Cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="lg:col-span-4 flex flex-col"
+          >
+            <div className="salimov-card p-4 sm:p-5 border border-white/10 flex flex-col justify-between h-full bg-[#1c1c1c]">
+              <div>
+                <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
+                  <FaGraduationCap className="text-accent text-sm" />
+                  <span>Education</span>
+                </h3>
+
+                <div className="space-y-1">
+                  {educations.map((edu, i) => (
+                    <div key={i} className="salimov-timeline-item">
+                      <div className="salimov-timeline-icon">
+                        <FaGraduationCap />
+                      </div>
+                      <span className="salimov-timeline-badge">{edu.period}</span>
+                      <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-tight">
+                        {edu.degree}
+                      </h4>
+                      <p className="text-[10px] text-accent font-semibold">
+                        {edu.institution}
+                      </p>
+                      <p className="text-[10px] text-emerald-400 font-semibold mb-1">
+                        {edu.result}
+                      </p>
+                      <ul className="space-y-0.5 text-[11px] text-neutral-300">
+                        {edu.bullets.slice(0, 1).map((b, bi) => (
+                          <li key={bi} className="flex items-start gap-1.5 leading-tight">
+                            <span className="w-1 h-1 rounded-full bg-accent mt-1.5 shrink-0" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
