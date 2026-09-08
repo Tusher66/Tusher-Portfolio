@@ -117,8 +117,11 @@ export default function Projects() {
       : projects.filter((p) => p.categoryType === activeFilter);
 
   return (
-    <section id="portfolio" className="py-24 relative bg-[#111111] overflow-hidden">
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="portfolio"
+      className="horizontal-section-panel bg-[#111111]"
+    >
+      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto">
         {/* Salimov Watermark Title */}
         <div className="salimov-title-wrap">
           <span className="salimov-watermark">WORKS</span>
@@ -128,14 +131,14 @@ export default function Projects() {
         </div>
 
         {/* Filter Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-14">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.key;
             return (
               <button
                 key={tab.key}
                 onClick={() => setActiveFilter(tab.key)}
-                className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                className={`px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   isActive
                     ? 'bg-accent text-white shadow-lg'
                     : 'bg-[#252525] text-neutral-300 hover:text-white hover:bg-[#2e2e2e]'
@@ -150,7 +153,7 @@ export default function Projects() {
         {/* Project Cards Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
         >
           <AnimatePresence>
             {filteredProjects.map((project) => (
@@ -166,37 +169,37 @@ export default function Projects() {
               >
                 {/* Visual Preview Area */}
                 <div
-                  className={`relative h-60 bg-gradient-to-br ${project.gradient} p-6 flex flex-col justify-between border-b border-white/5 overflow-hidden`}
+                  className={`relative h-48 sm:h-52 bg-gradient-to-br ${project.gradient} p-5 flex flex-col justify-between border-b border-white/5 overflow-hidden`}
                 >
                   <div className="flex items-center justify-between z-10">
-                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[11px] font-bold text-accent uppercase tracking-wider">
+                    <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-bold text-accent uppercase tracking-wider">
                       {project.category}
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center text-neutral-300 group-hover:text-accent group-hover:scale-110 transition-all">
-                      <FaExternalLinkAlt className="text-xs" />
+                    <div className="w-7 h-7 rounded-full bg-black/60 flex items-center justify-center text-neutral-300 group-hover:text-accent group-hover:scale-110 transition-all">
+                      <FaExternalLinkAlt className="text-[10px]" />
                     </div>
                   </div>
 
                   {/* Stylized Mockup Preview Box */}
                   <div className="my-auto z-10">
-                    <div className="bg-[#181818]/90 border border-white/10 rounded-xl p-4 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
-                      <div className="flex items-center gap-1.5 mb-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                    <div className="bg-[#181818]/90 border border-white/10 rounded-xl p-3 shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <span className="w-2 h-2 rounded-full bg-red-500/80" />
+                        <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                        <span className="w-2 h-2 rounded-full bg-green-500/80" />
                       </div>
-                      <p className="text-xs font-mono text-neutral-200 truncate font-semibold">
+                      <p className="text-[11px] font-mono text-neutral-200 truncate font-semibold">
                         // {project.title}
                       </p>
                     </div>
                   </div>
 
                   {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5 z-10">
+                  <div className="flex flex-wrap gap-1 z-10">
                     {project.tech.slice(0, 3).map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-semibold bg-black/50 text-neutral-300 px-2 py-0.5 rounded-md border border-white/10"
+                        className="text-[9px] font-semibold bg-black/50 text-neutral-300 px-1.5 py-0.5 rounded border border-white/10"
                       >
                         {t}
                       </span>
@@ -205,9 +208,9 @@ export default function Projects() {
                 </div>
 
                 {/* Card Meta Info */}
-                <div className="p-6 flex flex-col justify-between flex-1 bg-[#252525]">
+                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-[#252525]">
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-accent transition-colors uppercase tracking-tight">
+                    <h3 className="text-base font-bold text-white mb-1 group-hover:text-accent transition-colors uppercase tracking-tight">
                       {project.title}
                     </h3>
                     <p className="text-xs text-neutral-400 line-clamp-2">
@@ -215,7 +218,7 @@ export default function Projects() {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                  <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px]">
                     <span className="font-semibold text-accent uppercase tracking-wider">
                       {project.category}
                     </span>
@@ -255,17 +258,17 @@ export default function Projects() {
                 <FaTimes />
               </button>
 
-              <div className="salimov-title-wrap mb-6 text-left">
+              <div className="salimov-title-wrap mb-5 text-left">
                 <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
                   {selectedProject.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight font-display">
+                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight font-display">
                   {selectedProject.title}
                 </h3>
               </div>
 
               {/* Salimov Meta Table */}
-              <div className="grid grid-cols-2 gap-3 mb-6 bg-[#252525] p-4 rounded-xl border border-white/5 text-xs sm:text-sm">
+              <div className="grid grid-cols-2 gap-3 mb-5 bg-[#252525] p-3.5 rounded-xl border border-white/5 text-xs">
                 <div>
                   <span className="text-neutral-400 block font-medium">Project :</span>
                   <span className="text-white font-semibold">{selectedProject.category}</span>
@@ -285,20 +288,20 @@ export default function Projects() {
               </div>
 
               {/* Description */}
-              <p className="text-neutral-300 text-sm leading-relaxed mb-6">
+              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-5">
                 {selectedProject.description}
               </p>
 
               {/* Frameworks / Tech */}
-              <div className="mb-8">
+              <div className="mb-6">
                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
                   Frameworks & Technologies
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {selectedProject.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 bg-[#2b2b2b] border border-white/10 text-neutral-200 text-xs rounded-full font-medium"
+                      className="px-2.5 py-0.5 bg-[#2b2b2b] border border-white/10 text-neutral-200 text-xs rounded-full font-medium"
                     >
                       {t}
                     </span>
@@ -307,7 +310,7 @@ export default function Projects() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 items-center">
+              <div className="flex flex-wrap gap-3 items-center">
                 <a
                   href={selectedProject.githubUrl}
                   target="_blank"

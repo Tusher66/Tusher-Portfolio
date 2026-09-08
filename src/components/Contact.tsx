@@ -91,8 +91,11 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 relative bg-[#111111] overflow-hidden">
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="contact"
+      className="horizontal-section-panel bg-[#111111]"
+    >
+      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto">
         {/* Salimov Watermark Title */}
         <div className="salimov-title-wrap">
           <span className="salimov-watermark">CONTACT</span>
@@ -102,7 +105,7 @@ export default function Contact() {
         </div>
 
         {/* 2-Column Contact Layout */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Direct Info & Socials */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -110,41 +113,41 @@ export default function Contact() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5"
           >
-            <h3 className="text-2xl font-bold text-white uppercase tracking-wider mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider mb-3">
               DON'T BE SHY !
             </h3>
-            <p className="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
+            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-6">
               Feel free to get in touch with me. I am always open to discussing new software development projects, enterprise architectures, or opportunities to be part of your vision.
             </p>
 
-            <div className="space-y-6 mb-10">
+            <div className="space-y-4 mb-8">
               {/* Address */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-lg shrink-0">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-base shrink-0">
                   <FaMapMarkerAlt />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block">
                     ADDRESS POINT
                   </span>
-                  <span className="text-sm sm:text-base text-white font-semibold">
+                  <span className="text-xs sm:text-sm text-white font-semibold">
                     Dhaka, Bangladesh
                   </span>
                 </div>
               </div>
 
               {/* Email */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-lg shrink-0">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-base shrink-0">
                   <FaEnvelope />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block">
                     MAIL ME
                   </span>
                   <a
                     href="mailto:tusher66@gmail.com"
-                    className="text-sm sm:text-base text-white hover:text-accent font-semibold transition-colors"
+                    className="text-xs sm:text-sm text-white hover:text-accent font-semibold transition-colors"
                   >
                     tusher66@gmail.com
                   </a>
@@ -152,19 +155,19 @@ export default function Contact() {
               </div>
 
               {/* Phone & WhatsApp */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-lg shrink-0">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-base shrink-0">
                   <FaPhoneAlt />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block">
                     CALL / WHATSAPP
                   </span>
                   <a
                     href="https://wa.me/8801754343120"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm sm:text-base text-white hover:text-accent font-semibold transition-colors"
+                    className="text-xs sm:text-sm text-white hover:text-accent font-semibold transition-colors"
                   >
                     +880 1754 343120
                   </a>
@@ -173,7 +176,7 @@ export default function Contact() {
             </div>
 
             {/* Social Buttons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -181,7 +184,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-11 h-11 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-neutral-300 hover:text-accent hover:border-accent hover:scale-110 transition-all shadow-md"
+                  className="w-10 h-10 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-neutral-300 hover:text-accent hover:border-accent hover:scale-110 transition-all shadow-md"
                 >
                   {social.icon}
                 </a>
@@ -196,8 +199,8 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-7"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <input
                     type="text"
@@ -206,7 +209,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="YOUR NAME"
-                    className="salimov-input"
+                    className="salimov-input text-xs sm:text-sm"
                   />
                 </div>
                 <div>
@@ -217,7 +220,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="YOUR EMAIL"
-                    className="salimov-input"
+                    className="salimov-input text-xs sm:text-sm"
                   />
                 </div>
               </div>
@@ -229,7 +232,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="YOUR SUBJECT"
-                  className="salimov-input"
+                  className="salimov-input text-xs sm:text-sm"
                 />
               </div>
 
@@ -237,15 +240,15 @@ export default function Contact() {
                 <textarea
                   name="message"
                   required
-                  rows={5}
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="YOUR MESSAGE"
-                  className="salimov-input salimov-textarea resize-none"
+                  className="salimov-input salimov-textarea resize-none text-xs sm:text-sm"
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-1">
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -253,7 +256,7 @@ export default function Contact() {
                 >
                   <span>{isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}</span>
                   <span className="salimov-btn-icon">
-                    <FaPaperPlane className="text-sm" />
+                    <FaPaperPlane className="text-xs" />
                   </span>
                 </button>
 
@@ -263,9 +266,9 @@ export default function Contact() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0 }}
-                      className="flex items-center gap-2 text-emerald-400 text-sm font-semibold bg-emerald-950/40 border border-emerald-800/60 px-4 py-2.5 rounded-full"
+                      className="flex items-center gap-2 text-emerald-400 text-xs font-semibold bg-emerald-950/40 border border-emerald-800/60 px-3.5 py-2 rounded-full"
                     >
-                      <FaCheckCircle className="text-base shrink-0" />
+                      <FaCheckCircle className="text-sm shrink-0" />
                       <span>Message sent successfully!</span>
                     </motion.div>
                   )}
@@ -275,9 +278,9 @@ export default function Contact() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0 }}
-                      className="flex items-center gap-2 text-amber-400 text-sm font-semibold bg-amber-950/40 border border-amber-800/60 px-4 py-2.5 rounded-full"
+                      className="flex items-center gap-2 text-amber-400 text-xs font-semibold bg-amber-950/40 border border-amber-800/60 px-3.5 py-2 rounded-full"
                     >
-                      <FaExclamationCircle className="text-base shrink-0" />
+                      <FaExclamationCircle className="text-sm shrink-0" />
                       <span>{errorMessage}</span>
                     </motion.div>
                   )}

@@ -12,7 +12,17 @@ import myPic from '../assets/Images/myPic.jpg';
 export default function Hero() {
   const scrollToAbout = () => {
     const element = document.getElementById('about');
-    if (element) {
+    const container = document.getElementById('horizontal-container');
+    if (element && container) {
+      if (window.innerWidth >= 1024) {
+        container.scrollTo({
+          left: element.offsetLeft,
+          behavior: 'smooth',
+        });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -27,15 +37,12 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen relative flex items-center justify-center py-20 lg:py-0 px-4 sm:px-6 lg:px-12 bg-[#111111] overflow-hidden"
+      className="horizontal-section-panel bg-[#111111]"
     >
-      {/* Background ambient decorative slant like Salimov */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl w-full mx-auto grid lg:grid-cols-12 gap-12 lg:gap-14 items-center relative z-10">
+      <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
         {/* Left Column: Salimov Geometric / Polygonal Frame Portrait */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, x: -40 }}
+          initial={{ opacity: 0, scale: 0.9, x: -30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="lg:col-span-5 flex justify-center"
@@ -46,11 +53,11 @@ export default function Hero() {
               alt="Md. Ismail Hossain Tusher"
               className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
-            {/* Subtle Gradient Shade at bottom of portrait */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
+            {/* Gradient Shade at bottom of portrait */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80" />
             
             {/* Floating Tag */}
-            <div className="absolute bottom-5 left-5 right-5 bg-[#1a1a1a]/90 backdrop-blur-md border border-white/10 rounded-2xl p-3.5 flex items-center justify-between">
+            <div className="absolute bottom-4 left-4 right-4 bg-[#1a1a1a]/95 backdrop-blur-md border border-white/10 rounded-2xl p-3 flex items-center justify-between">
               <div>
                 <p className="text-white font-bold text-sm">Md. Ismail Hossain Tusher</p>
                 <p className="text-accent text-xs font-medium">B.Sc. ICE (BAUET) • Software Engineer</p>
@@ -62,26 +69,26 @@ export default function Hero() {
 
         {/* Right Column: Salimov Typography & Call to Action */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
         >
           {/* Greeting */}
-          <div className="inline-flex items-center gap-2 mb-3">
+          <div className="inline-flex items-center gap-2 mb-2.5">
             <span className="w-8 h-0.5 bg-accent" />
-            <span className="text-neutral-400 font-bold text-sm sm:text-base uppercase tracking-widest">
+            <span className="text-neutral-400 font-bold text-xs sm:text-sm uppercase tracking-widest">
               HI THERE !
             </span>
           </div>
 
           {/* Bold Name */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tight leading-tight mb-3 font-display">
+          <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white uppercase tracking-tight leading-tight mb-2 font-display">
             I'M <span className="text-accent">ISMAIL TUSHER.</span>
           </h1>
 
           {/* Typing Role */}
-          <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-200 mb-6 h-10 flex items-center justify-center lg:justify-start">
+          <div className="text-lg sm:text-2xl font-extrabold text-neutral-200 mb-5 min-h-[36px] flex items-center justify-center lg:justify-start">
             <TypeAnimation
               sequence={[
                 'Full-Stack Software Engineer',
@@ -101,12 +108,12 @@ export default function Hero() {
           </div>
 
           {/* Bio paragraph */}
-          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed max-w-2xl mb-8">
+          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed max-w-xl mb-7">
             I'm a Bangladeshi-based software engineer focused on architecting scalable backend systems, resilient microservices, and modern reactive full-stack web applications. Dedicated to building performant and dependable enterprise solutions.
           </p>
 
           {/* Buttons & Socials Row */}
-          <div className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
+          <div className="flex flex-wrap items-center gap-5 justify-center lg:justify-start">
             {/* Salimov Signature "MORE ABOUT ME" button */}
             <button
               onClick={scrollToAbout}
@@ -119,7 +126,7 @@ export default function Hero() {
             </button>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -127,7 +134,7 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-11 h-11 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-neutral-300 hover:text-accent hover:border-accent hover:scale-110 transition-all shadow-md"
+                  className="w-10 h-10 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-neutral-300 hover:text-accent hover:border-accent hover:scale-110 transition-all shadow-md"
                 >
                   {social.icon}
                 </a>

@@ -97,8 +97,11 @@ export default function Education() {
   };
 
   return (
-    <section id="education" className="py-24 relative bg-[#111111] overflow-hidden">
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="education"
+      className="horizontal-section-panel bg-[#111111]"
+    >
+      <div ref={ref} className="max-w-6xl w-full mx-auto my-auto">
         {/* Salimov Watermark Title */}
         <div className="salimov-title-wrap">
           <span className="salimov-watermark">EXPERIENCE</span>
@@ -109,23 +112,23 @@ export default function Education() {
 
         {/* Featured Research & Thesis Spotlight Box */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12"
         >
-          <div className="salimov-card p-6 sm:p-8 border border-white/10 relative overflow-hidden bg-gradient-to-br from-[#1e1e1e] to-[#171717]">
+          <div className="salimov-card p-5 sm:p-7 border border-white/10 relative overflow-hidden bg-gradient-to-br from-[#1e1e1e] to-[#171717]">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-6">
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-full bg-accent/15 border border-accent/40 flex items-center justify-center text-accent shrink-0">
-                  <FaScroll className="text-xl" />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5 mb-5">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-accent/15 border border-accent/40 flex items-center justify-center text-accent shrink-0">
+                  <FaScroll className="text-lg" />
                 </div>
                 <div>
                   <span className="salimov-timeline-badge mb-0.5">
                     Peer-Reviewed Journal & Thesis
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wider">
+                  <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wider">
                     Published Research & B.Sc. Thesis
                   </h3>
                 </div>
@@ -146,29 +149,29 @@ export default function Education() {
             </div>
 
             {/* Paper Title & Citation details */}
-            <div className="space-y-4 mb-6">
+            <div className="space-y-3.5 mb-5">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-1">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-0.5">
                   Journal Article Title
                 </p>
                 <a
                   href={publication.pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-base sm:text-xl font-extrabold text-white hover:text-accent transition-colors leading-snug inline-flex items-start gap-2 group"
+                  className="text-sm sm:text-lg font-extrabold text-white hover:text-accent transition-colors leading-snug inline-flex items-start gap-2 group"
                 >
                   <span>“{publication.title}”</span>
                   <FaExternalLinkAlt className="text-xs text-accent opacity-70 group-hover:opacity-100 mt-1 shrink-0" />
                 </a>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-                <div className="bg-[#242424] p-3.5 rounded-xl border border-white/5">
-                  <span className="text-neutral-400 block mb-0.5">Authors</span>
+              <div className="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                <div className="bg-[#242424] p-3 rounded-xl border border-white/5">
+                  <span className="text-neutral-400 block text-[11px] mb-0.5">Authors</span>
                   <span className="text-white font-semibold">{publication.authors}</span>
                 </div>
-                <div className="bg-[#242424] p-3.5 rounded-xl border border-white/5">
-                  <span className="text-neutral-400 block mb-0.5">Venue & Issue</span>
+                <div className="bg-[#242424] p-3 rounded-xl border border-white/5">
+                  <span className="text-neutral-400 block text-[11px] mb-0.5">Venue & Issue</span>
                   <span className="text-white font-semibold">
                     {publication.journal}, {publication.volume} ({publication.date})
                   </span>
@@ -176,26 +179,26 @@ export default function Education() {
               </div>
 
               {/* Thesis Info */}
-              <div className="bg-[#222222] border border-white/5 p-4 rounded-xl">
-                <p className="text-xs font-bold text-accent uppercase tracking-wider mb-1">
+              <div className="bg-[#222222] border border-white/5 p-3.5 rounded-xl">
+                <p className="text-[11px] font-bold text-accent uppercase tracking-wider mb-0.5">
                   Undergraduate Thesis
                 </p>
-                <p className="text-sm sm:text-base text-neutral-200 font-medium">
+                <p className="text-xs sm:text-sm text-neutral-200 font-medium">
                   Thesis on “{publication.thesisTitle}”
                 </p>
-                <p className="text-xs text-neutral-400 mt-0.5">
+                <p className="text-[11px] text-neutral-400 mt-0.5">
                   Department of Information and Communication Engineering, {publication.institution}
                 </p>
               </div>
 
               {/* Citation */}
-              <div className="bg-[#1b1b1b] border border-white/5 p-4 rounded-xl flex items-start gap-3">
-                <FaQuoteLeft className="text-accent text-base shrink-0 mt-0.5 opacity-80" />
+              <div className="bg-[#1b1b1b] border border-white/5 p-3.5 rounded-xl flex items-start gap-2.5">
+                <FaQuoteLeft className="text-accent text-sm shrink-0 mt-0.5 opacity-80" />
                 <div className="flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-0.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-0.5">
                     Citation
                   </p>
-                  <p className="text-xs sm:text-sm font-mono text-neutral-300">
+                  <p className="text-xs font-mono text-neutral-300">
                     {publication.citation}
                   </p>
                 </div>
@@ -203,11 +206,11 @@ export default function Education() {
             </div>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {publication.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs font-medium bg-[#222222] text-neutral-300 px-3 py-1 rounded-full border border-white/10"
+                  className="text-[11px] font-medium bg-[#222222] text-neutral-300 px-2.5 py-0.5 rounded-full border border-white/10"
                 >
                   {tag}
                 </span>
@@ -217,35 +220,35 @@ export default function Education() {
         </motion.div>
 
         {/* Dual Timelines: Experience (Left) & Education (Right) */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Experience Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider mb-8 flex items-center gap-2">
+            <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wider mb-6 flex items-center gap-2">
               <span>Experience</span>
             </h3>
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               {experiences.map((exp, i) => (
                 <div key={i} className="salimov-timeline-item">
                   <div className="salimov-timeline-icon">
                     <FaBriefcase />
                   </div>
                   <span className="salimov-timeline-badge">{exp.period}</span>
-                  <h4 className="text-lg font-bold text-white uppercase tracking-tight mb-1">
+                  <h4 className="text-base font-bold text-white uppercase tracking-tight mb-0.5">
                     {exp.role}{' '}
                     <span className="text-xs text-accent font-semibold lowercase">
                       — {exp.company.split('—')[0]}
                     </span>
                   </h4>
-                  <p className="text-xs text-neutral-400 mb-3">{exp.company}</p>
-                  <ul className="space-y-1.5 text-sm text-neutral-300">
+                  <p className="text-xs text-neutral-400 mb-2">{exp.company}</p>
+                  <ul className="space-y-1 text-xs sm:text-sm text-neutral-300">
                     {exp.bullets.map((b, bi) => (
                       <li key={bi} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -261,30 +264,30 @@ export default function Education() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider mb-8 flex items-center gap-2">
+            <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wider mb-6 flex items-center gap-2">
               <span>Education</span>
             </h3>
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               {educations.map((edu, i) => (
                 <div key={i} className="salimov-timeline-item">
                   <div className="salimov-timeline-icon">
                     <FaGraduationCap />
                   </div>
                   <span className="salimov-timeline-badge">{edu.period}</span>
-                  <h4 className="text-lg font-bold text-white uppercase tracking-tight mb-1">
+                  <h4 className="text-base font-bold text-white uppercase tracking-tight mb-0.5">
                     {edu.degree}
                   </h4>
-                  <p className="text-xs text-accent font-semibold mb-1">
+                  <p className="text-xs text-accent font-semibold mb-0.5">
                     {edu.institution}
                   </p>
-                  <p className="text-xs text-emerald-400 font-semibold mb-3">
+                  <p className="text-xs text-emerald-400 font-semibold mb-2">
                     {edu.result}
                   </p>
-                  <ul className="space-y-1.5 text-sm text-neutral-300">
+                  <ul className="space-y-1 text-xs sm:text-sm text-neutral-300">
                     {edu.bullets.map((b, bi) => (
                       <li key={bi} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
                         <span>{b}</span>
                       </li>
                     ))}
