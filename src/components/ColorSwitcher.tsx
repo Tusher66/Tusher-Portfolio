@@ -40,31 +40,31 @@ export default function ColorSwitcher() {
   };
 
   return (
-    <div className="fixed top-6 left-6 z-50">
+    <div className="fixed top-5 right-5 z-50">
       {/* Floating Gear Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle Color Switcher"
-        className="w-12 h-12 rounded-full bg-[#252525] border border-white/15 text-white flex items-center justify-center shadow-2xl hover:border-accent transition-all cursor-pointer group"
+        className="w-11 h-11 rounded-full bg-[#252525] border border-white/15 text-white flex items-center justify-center shadow-2xl hover:border-accent transition-all cursor-pointer group"
       >
         <FaCog
-          className={`text-xl text-neutral-300 group-hover:text-accent transition-transform duration-500 ${
+          className={`text-lg text-neutral-300 group-hover:text-accent transition-transform duration-500 ${
             isOpen ? 'rotate-90 text-accent' : 'group-hover:rotate-45'
           }`}
         />
       </button>
 
-      {/* Popout Panel */}
+      {/* Popout Panel on Right */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: -10 }}
+            initial={{ opacity: 0, scale: 0.9, x: 10 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.9, x: -10 }}
+            exit={{ opacity: 0, scale: 0.9, x: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-14 left-0 w-60 bg-[#1e1e1e] border border-white/10 rounded-2xl p-5 shadow-2xl backdrop-blur-xl"
+            className="absolute top-13 right-0 w-60 bg-[#1e1e1e] border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-xl"
           >
-            <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
+            <div className="flex items-center justify-between mb-2.5 border-b border-white/10 pb-2">
               <span className="text-xs font-bold uppercase tracking-wider text-neutral-300">
                 Theme Accent
               </span>
@@ -76,11 +76,11 @@ export default function ColorSwitcher() {
               </button>
             </div>
 
-            <p className="text-[11px] text-neutral-400 mb-3">
+            <p className="text-[11px] text-neutral-400 mb-2.5">
               Choose your preferred accent color:
             </p>
 
-            <div className="grid grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-3 gap-2">
               {themeColors.map((theme) => {
                 const isSelected = activeColor === theme.color;
                 return (
@@ -89,14 +89,14 @@ export default function ColorSwitcher() {
                     onClick={() => applyThemeColor(theme.color)}
                     title={theme.name}
                     style={{ backgroundColor: theme.color }}
-                    className={`h-9 rounded-xl transition-all flex items-center justify-center cursor-pointer shadow-md ${
+                    className={`h-8 rounded-lg transition-all flex items-center justify-center cursor-pointer shadow-md ${
                       isSelected
                         ? 'ring-2 ring-white ring-offset-2 ring-offset-[#1e1e1e] scale-105'
                         : 'hover:scale-105 opacity-80 hover:opacity-100'
                     }`}
                   >
                     {isSelected && (
-                      <span className="w-2 h-2 rounded-full bg-white shadow-sm" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
                     )}
                   </button>
                 );

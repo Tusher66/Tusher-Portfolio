@@ -50,19 +50,12 @@ export default function NavigationDock({ activeSection = 'home' }: NavigationDoc
 
   return (
     <>
-      {/* Desktop Right-Docked Vertical Navigation (Salimov Signature) */}
-      <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-5">
+      {/* Desktop Left-Docked Vertical Navigation */}
+      <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-5">
         {navItems.map((item) => {
           const isActive = activeSection === item.id;
           return (
-            <div key={item.id} className="relative flex items-center justify-end group">
-              {/* Expanding Label Tooltip */}
-              <div className="absolute right-14 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 transform translate-x-3 group-hover:translate-x-0">
-                <span className="bg-accent text-white font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-full shadow-xl whitespace-nowrap">
-                  {item.label}
-                </span>
-              </div>
-
+            <div key={item.id} className="relative flex items-center justify-start group">
               {/* Circular Dock Button */}
               <button
                 onClick={() => scrollTo(item.id)}
@@ -75,6 +68,13 @@ export default function NavigationDock({ activeSection = 'home' }: NavigationDoc
               >
                 {item.icon}
               </button>
+
+              {/* Expanding Label Tooltip to the Right */}
+              <div className="absolute left-14 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 transform -translate-x-3 group-hover:translate-x-0">
+                <span className="bg-accent text-white font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-full shadow-xl whitespace-nowrap">
+                  {item.label}
+                </span>
+              </div>
             </div>
           );
         })}
