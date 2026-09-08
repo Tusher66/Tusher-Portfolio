@@ -40,23 +40,39 @@ export default function Hero() {
       className="horizontal-section-panel bg-[#111111]"
     >
       <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
-        {/* Left Column: Transparent Cutout Portrait without background box */}
+        {/* Left Column: Larger Cutout Portrait with Title Badge Below */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: -30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="lg:col-span-5 flex justify-center relative"
+          className="lg:col-span-5 flex flex-col items-center justify-center relative"
         >
           {/* Subtle Ambient Backlight Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 sm:w-72 sm:h-72 bg-accent/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Clean Floating Cutout Portrait */}
-          <div className="relative w-full max-w-[300px] sm:max-w-[340px] max-h-[60vh] flex items-center justify-center z-10">
+          {/* Larger Floating Cutout Portrait */}
+          <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[440px] flex items-center justify-center z-10">
             <img
               src={myPicture}
               alt="Md. Ismail Hossain Tusher"
-              className="w-full h-auto max-h-[58vh] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)] filter hover:scale-105 transition-transform duration-500"
+              className="w-full h-auto max-h-[58vh] sm:max-h-[64vh] object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.95)] filter hover:scale-105 transition-transform duration-500"
             />
+          </div>
+
+          {/* Title Info Card Below Picture */}
+          <div className="mt-3 w-full max-w-[320px] sm:max-w-[380px] bg-[#1a1a1a]/95 backdrop-blur-md border border-white/10 rounded-2xl p-3 sm:p-3.5 flex items-center justify-between shadow-2xl z-10">
+            <div>
+              <p className="text-white font-bold text-sm sm:text-base leading-tight">
+                Md. Ismail Hossain Tusher
+              </p>
+              <p className="text-accent text-xs font-semibold mt-0.5">
+                B.Sc. ICE (BAUET) • Software Engineer
+              </p>
+            </div>
+            <span className="flex h-3 w-3 relative shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
+            </span>
           </div>
         </motion.div>
 
