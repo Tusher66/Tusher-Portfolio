@@ -23,6 +23,7 @@ export default function Navbar({ activeSection = 'home' }: NavbarProps) {
     { name: 'Home', href: '#home', id: 'home' },
     { name: 'Services', href: '#services', id: 'services' },
     { name: 'About me', href: '#about', id: 'about' },
+    { name: 'Education', href: '#education', id: 'education' },
     { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
     { name: 'Contact me', href: '#contact', id: 'contact' },
   ];

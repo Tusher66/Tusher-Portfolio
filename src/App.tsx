@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import About from './components/About';
+import Education from './components/Education';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -13,7 +14,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
 
   useEffect(() => {
-    const sections = ['home', 'services', 'about', 'portfolio', 'contact'];
+    const sections = ['home', 'services', 'about', 'education', 'portfolio', 'contact'];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
@@ -45,6 +46,7 @@ export default function App() {
         <Hero />
         <Services />
         <About />
+        <Education />
         <Projects />
         <Contact />
       </main>

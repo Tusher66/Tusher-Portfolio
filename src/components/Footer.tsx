@@ -25,6 +25,7 @@ export default function Footer() {
     { name: 'Home', id: 'home' },
     { name: 'Services', id: 'services' },
     { name: 'About me', id: 'about' },
+    { name: 'Education', id: 'education' },
     { name: 'Portfolio', id: 'portfolio' },
     { name: 'Contact me', id: 'contact' },
   ];

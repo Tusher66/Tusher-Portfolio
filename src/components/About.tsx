@@ -183,17 +183,36 @@ export default function About() {
             </p>
 
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
-              With 3+ years of professional full-stack software engineering experience, I specialize in architecting scalable backend systems with Java Spring Boot, engineering reactive frontends with Vue.js & Angular, and building robust database architectures with MySQL, PostgreSQL, and Oracle SQL.
+              Holding a B.Sc. in Information & Communication Engineering from BAUET (with{' '}
+              <a
+                href="https://journal.bauet.ac.bd/wp-content/uploads/2020/11/22_Article-9.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-accent hover:underline font-medium inline-flex items-center gap-1"
+              >
+                published research in BAUET Journal ↗
+              </a>
+              ) and 3+ years of professional full-stack software engineering experience, I specialize in architecting scalable backend systems with Java Spring Boot, engineering reactive frontends with Vue.js & Angular, and building robust database architectures with MySQL, PostgreSQL, and Oracle SQL.
             </p>
 
-            {/* Download CV button matching Figma */}
-            <a
-              href="mailto:tusher66@gmail.com?subject=CV%20Request%20-%20Md.%20Ismail%20Hossain%20Tusher"
-              className="btn-orange-glow px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold tracking-wide flex items-center gap-2.5 cursor-pointer inline-flex"
-            >
-              <FaDownload className="text-sm" />
-              <span>Download CV</span>
-            </a>
+            {/* Action buttons matching Figma */}
+            <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
+              <a
+                href="mailto:tusher66@gmail.com?subject=CV%20Request%20-%20Md.%20Ismail%20Hossain%20Tusher"
+                className="btn-orange-glow px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold tracking-wide flex items-center gap-2.5 cursor-pointer inline-flex"
+              >
+                <FaDownload className="text-sm" />
+                <span>Download CV</span>
+              </a>
+
+              <a
+                href="#education"
+                className="px-7 py-3.5 rounded-full text-sm sm:text-base font-semibold text-white bg-[#1e1e1e] border border-neutral-700 hover:border-orange-accent hover:bg-[#252525] transition-all cursor-pointer inline-flex items-center gap-2"
+              >
+                <span>Education & Research</span>
+                <span className="text-orange-accent text-xs">→</span>
+              </a>
+            </div>
           </motion.div>
         </div>
 
