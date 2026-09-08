@@ -2,29 +2,31 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaWhatsapp,
+  FaGithub,
+  FaLinkedinIn,
+  FaPaperPlane,
   FaCheckCircle,
   FaExclamationCircle,
-  FaPaperPlane,
-  FaEnvelope,
-  FaWhatsapp,
 } from 'react-icons/fa';
 
 export default function Contact() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
-    timeline: '',
     email: '',
-    service: '',
-    details: '',
+    subject: '',
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -44,10 +46,8 @@ export default function Contact() {
         body: JSON.stringify({
           Name: formData.name,
           Email: formData.email,
-          Phone: formData.phone || 'Not provided',
-          'Service of Interest': formData.service || 'General Inquiry',
-          Timeline: formData.timeline || 'Not specified',
-          'Project Details / Message': formData.details,
+          Subject: formData.subject || 'Portfolio Inquiry',
+          Message: formData.message,
           _subject: `New Portfolio Message from ${formData.name}`,
           _template: 'table',
           _captcha: 'false',
@@ -65,72 +65,139 @@ export default function Contact() {
         setIsSubmitted(true);
         setFormData({
           name: '',
-          phone: '',
-          timeline: '',
           email: '',
-          service: '',
-          details: '',
+          subject: '',
+          message: '',
         });
         setTimeout(() => setIsSubmitted(false), 8000);
       } else {
         throw new Error(result.message || 'Submission failed');
       }
     } catch (err) {
-      console.error('Contact submission error:', err);
+      console.error('Contact error:', err);
       setErrorMessage(
-        'Unable to send automatically right now. Click below to open your email client.'
+        'Unable to send message automatically. Please reach out directly at tusher66@gmail.com'
       );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const mailtoFallback = `mailto:tusher66@gmail.com?subject=Contact%20From%20${encodeURIComponent(
-    formData.name || 'Portfolio Visitor'
-  )}&body=${encodeURIComponent(
-    `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nTimeline: ${formData.timeline}\n\nMessage:\n${formData.details}`
-  )}`;
-
-  const whatsappUrl =
-    'https://wa.me/8801754343120?text=' +
-    encodeURIComponent(
-      formData.name
-        ? `Hi Ismail Tusher, I am ${formData.name}. I would like to discuss: ${formData.details || 'a software engineering opportunity.'}`
-        : 'Hi Ismail Tusher, I visited your portfolio and would like to connect about a software engineering project.'
-    );
+  const socialLinks = [
+    { icon: <FaGithub />, href: 'https://github.com/Tusher66', label: 'GitHub' },
+    { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/in/ismail-hossain-tusher', label: 'LinkedIn' },
+    { icon: <FaWhatsapp />, href: 'https://wa.me/8801754343120?text=Hi%20Ismail,%20I%20would%20like%20to%20connect!', label: 'WhatsApp' },
+    { icon: <FaEnvelope />, href: 'mailto:tusher66@gmail.com', label: 'Email' },
+  ];
 
   return (
-    <section id="contact" className="py-24 relative bg-[#141414] overflow-hidden">
-      {/* Background ambient glow */}
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="contact" className="py-24 relative bg-[#111111] overflow-hidden">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header matching Figma */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
-            Contact me
+        {/* Salimov Watermark Title */}
+        <div className="salimov-title-wrap">
+          <span className="salimov-watermark">CONTACT</span>
+          <h2 className="salimov-heading">
+            GET IN <span className="text-accent">TOUCH</span>
           </h2>
-          <p className="text-neutral-400 text-sm sm:text-base">
-            Cultivating Connections: Reach Out And Connect With Me
-          </p>
-        </motion.div>
+        </div>
 
-        {/* 2-Column Form matching Figma layout */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
-        >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Left Column Inputs */}
-              <div className="space-y-6">
+        {/* 2-Column Contact Layout */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Info & Socials */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5"
+          >
+            <h3 className="text-2xl font-bold text-white uppercase tracking-wider mb-4">
+              DON'T BE SHY !
+            </h3>
+            <p className="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
+              Feel free to get in touch with me. I am always open to discussing new software development projects, enterprise architectures, or opportunities to be part of your vision.
+            </p>
+
+            <div className="space-y-6 mb-10">
+              {/* Address */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-lg shrink-0">
+                  <FaMapMarkerAlt />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">
+                    ADDRESS POINT
+                  </span>
+                  <span className="text-sm sm:text-base text-white font-semibold">
+                    Dhaka, Bangladesh
+                  </span>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-lg shrink-0">
+                  <FaEnvelope />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">
+                    MAIL ME
+                  </span>
+                  <a
+                    href="mailto:tusher66@gmail.com"
+                    className="text-sm sm:text-base text-white hover:text-accent font-semibold transition-colors"
+                  >
+                    tusher66@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Phone & WhatsApp */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-accent text-lg shrink-0">
+                  <FaPhoneAlt />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">
+                    CALL / WHATSAPP
+                  </span>
+                  <a
+                    href="https://wa.me/8801754343120"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm sm:text-base text-white hover:text-accent font-semibold transition-colors"
+                  >
+                    +880 1754 343120
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Buttons */}
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-11 h-11 rounded-full bg-[#252525] border border-white/10 flex items-center justify-center text-neutral-300 hover:text-accent hover:border-accent hover:scale-110 transition-all shadow-md"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right Column: Salimov Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-7"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <input
                     type="text"
@@ -138,36 +205,10 @@ export default function Contact() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Name"
-                    className="figma-input"
+                    placeholder="YOUR NAME"
+                    className="salimov-input"
                   />
                 </div>
-
-                <div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className="figma-input"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="text"
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleChange}
-                    placeholder="Timeline (e.g. 1-2 months)"
-                    className="figma-input"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column Inputs */}
-              <div className="space-y-6 flex flex-col">
                 <div>
                   <input
                     type="email"
@@ -175,105 +216,76 @@ export default function Contact() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email"
-                    className="figma-input"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="text"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    placeholder="Service Of Interest"
-                    className="figma-input"
-                  />
-                </div>
-
-                <div className="flex-1">
-                  <textarea
-                    name="details"
-                    required
-                    rows={4}
-                    value={formData.details}
-                    onChange={handleChange}
-                    placeholder="Project Details..."
-                    className="figma-input h-full min-h-[120px] resize-none"
+                    placeholder="YOUR EMAIL"
+                    className="salimov-input"
                   />
                 </div>
               </div>
-            </div>
 
-            {/* Bottom Submit & WhatsApp Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
-              <div className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
+              <div>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="YOUR SUBJECT"
+                  className="salimov-input"
+                />
+              </div>
+
+              <div>
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="YOUR MESSAGE"
+                  className="salimov-input salimov-textarea resize-none"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-orange-glow w-full sm:w-auto px-9 py-3.5 rounded-full text-base font-semibold tracking-wide flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="salimov-btn disabled:opacity-50"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center gap-2">
-                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
-                    </span>
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <FaPaperPlane className="text-xs" />
-                    </>
-                  )}
+                  <span>{isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}</span>
+                  <span className="salimov-btn-icon">
+                    <FaPaperPlane className="text-sm" />
+                  </span>
                 </button>
 
-                {/* WhatsApp Chat Button */}
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-7 py-3.5 rounded-full text-base font-semibold text-white bg-[#25D366] hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-600/20 hover:scale-105 cursor-pointer"
-                >
-                  <FaWhatsapp className="text-xl" />
-                  <span>WhatsApp Chat</span>
-                </a>
-              </div>
+                <AnimatePresence>
+                  {isSubmitted && (
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center gap-2 text-emerald-400 text-sm font-semibold bg-emerald-950/40 border border-emerald-800/60 px-4 py-2.5 rounded-full"
+                    >
+                      <FaCheckCircle className="text-base shrink-0" />
+                      <span>Message sent successfully!</span>
+                    </motion.div>
+                  )}
 
-              <AnimatePresence>
-                {isSubmitted && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="flex items-center gap-2 text-emerald-400 text-sm font-medium bg-emerald-950/40 border border-emerald-800/60 px-4 py-2 rounded-xl"
-                  >
-                    <FaCheckCircle className="text-base shrink-0" />
-                    <span>Your message has been sent to tusher66@gmail.com!</span>
-                  </motion.div>
-                )}
-
-                {errorMessage && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-amber-400 text-sm font-medium bg-amber-950/40 border border-amber-800/60 px-4 py-2 rounded-xl"
-                  >
-                    <div className="flex items-center gap-1.5">
+                  {errorMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center gap-2 text-amber-400 text-sm font-semibold bg-amber-950/40 border border-amber-800/60 px-4 py-2.5 rounded-full"
+                    >
                       <FaExclamationCircle className="text-base shrink-0" />
                       <span>{errorMessage}</span>
-                    </div>
-                    <a
-                      href={mailtoFallback}
-                      className="text-orange-accent underline hover:text-white font-semibold flex items-center gap-1"
-                    >
-                      <FaEnvelope className="text-xs" /> Send directly via Email
-                    </a>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </form>
-        </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -7,30 +7,28 @@ import {
   SiAngular,
   SiMysql,
   SiDocker,
+  SiPostgresql,
+  SiTypescript,
+  SiRedis,
 } from 'react-icons/si';
-import myPic from '../assets/Images/myPic.jpg';
 
 interface CircularProgressProps {
   percentage: number;
   label: string;
-  badgeText?: string;
   icon?: React.ReactNode;
   inView: boolean;
   delay?: number;
-  textColor?: string;
 }
 
 function CircularProgress({
   percentage,
   label,
-  badgeText,
   icon,
   inView,
   delay = 0,
-  textColor = 'text-orange-accent',
 }: CircularProgressProps) {
-  const radius = 48;
-  const stroke = 7;
+  const radius = 46;
+  const stroke = 6;
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = inView
@@ -39,21 +37,18 @@ function CircularProgress({
 
   return (
     <div className="flex flex-col items-center group">
-      {/* SVG Ring Container matching Figma design */}
-      <div className="relative w-32 h-32 flex items-center justify-center">
+      <div className="relative w-28 h-28 flex items-center justify-center">
         <svg height={radius * 2} width={radius * 2} className="transform -rotate-90">
-          {/* Background Track Circle */}
           <circle
-            stroke="#262626"
+            stroke="#2b2b2b"
             fill="transparent"
             strokeWidth={stroke}
             r={normalizedRadius}
             cx={radius}
             cy={radius}
           />
-          {/* Animated Orange Progress Arc */}
           <motion.circle
-            stroke="#FD5C02"
+            stroke="var(--accent-color)"
             fill="transparent"
             strokeWidth={stroke}
             strokeDasharray={`${circumference} ${circumference}`}
@@ -67,27 +62,23 @@ function CircularProgress({
           />
         </svg>
 
-        {/* Center Badge / Icon matching Figma */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-11 h-11 rounded-xl bg-[#1d1d1d] border border-neutral-700/70 flex items-center justify-center shadow-inner group-hover:border-orange-accent/50 transition-colors">
-            {icon ? (
-              <span className="text-xl">{icon}</span>
-            ) : (
-              <span className={`font-bold text-sm font-sans ${textColor}`}>
-                {badgeText}
-              </span>
-            )}
-          </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          {icon ? (
+            <span className="text-xl text-neutral-300 group-hover:text-accent transition-colors">
+              {icon}
+            </span>
+          ) : (
+            <span className="font-bold text-sm text-neutral-200">
+              {percentage}%
+            </span>
+          )}
         </div>
       </div>
 
-      {/* Percentage Text in Orange matching Figma */}
-      <p className="text-2xl font-extrabold text-orange-accent mt-3 tracking-tight">
+      <p className="text-xl font-bold text-accent mt-2 font-display">
         {percentage}%
       </p>
-
-      {/* Tool Name */}
-      <p className="text-neutral-300 font-medium text-sm mt-1 text-center">
+      <p className="text-neutral-300 font-semibold text-xs sm:text-sm mt-0.5 text-center uppercase tracking-wider">
         {label}
       </p>
     </div>
@@ -97,143 +88,164 @@ function CircularProgress({
 export default function About() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
+  const personalInfoLeft = [
+    { label: 'First Name', value: 'Ismail Hossain' },
+    { label: 'Last Name', value: 'Tusher' },
+    { label: 'Age', value: '27 Years' },
+    { label: 'Nationality', value: 'Bangladeshi' },
+    { label: 'Freelance', value: 'Available', highlight: true },
+  ];
+
+  const personalInfoRight = [
+    { label: 'Address', value: 'Dhaka, Bangladesh' },
+    { label: 'Phone', value: '+880 1754 343120', isLink: true, href: 'tel:+8801754343120' },
+    { label: 'Email', value: 'tusher66@gmail.com', isLink: true, href: 'mailto:tusher66@gmail.com' },
+    { label: 'WhatsApp', value: '+880 1754-343120', isLink: true, href: 'https://wa.me/8801754343120' },
+    { label: 'Languages', value: 'English, Bengali' },
+  ];
+
+  const stats = [
+    { number: '4+', label: 'Years of Experience' },
+    { number: '27+', label: 'Completed Projects' },
+    { number: '31+', label: 'Happy Clients' },
+    { number: '1+', label: 'Published Research Paper' },
+  ];
+
   const skillsData = [
-    {
-      label: 'Java Spring Boot',
-      percentage: 100,
-      icon: <SiSpringboot className="text-emerald-400" />,
-    },
-    {
-      label: 'Vue.js',
-      percentage: 100,
-      icon: <SiVuedotjs className="text-emerald-500" />,
-    },
-    {
-      label: 'Angular',
-      percentage: 85,
-      icon: <SiAngular className="text-red-500" />,
-    },
-    {
-      label: 'MySQL',
-      percentage: 90,
-      icon: <SiMysql className="text-sky-400" />,
-    },
-    {
-      label: 'Docker & DevOps',
-      percentage: 80,
-      icon: <SiDocker className="text-blue-400" />,
-    },
+    { label: 'Spring Boot', percentage: 95, icon: <SiSpringboot className="text-emerald-400" /> },
+    { label: 'Vue.js', percentage: 92, icon: <SiVuedotjs className="text-emerald-500" /> },
+    { label: 'Angular', percentage: 85, icon: <SiAngular className="text-red-500" /> },
+    { label: 'MySQL / Oracle', percentage: 90, icon: <SiMysql className="text-sky-400" /> },
+    { label: 'Docker & CI/CD', percentage: 80, icon: <SiDocker className="text-blue-400" /> },
+    { label: 'PostgreSQL', percentage: 88, icon: <SiPostgresql className="text-indigo-400" /> },
+    { label: 'TypeScript', percentage: 85, icon: <SiTypescript className="text-blue-500" /> },
+    { label: 'Redis Cache', percentage: 78, icon: <SiRedis className="text-red-400" /> },
   ];
 
   return (
-    <section id="about" className="py-24 relative bg-[#141414] overflow-hidden">
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="about" className="py-24 relative bg-[#111111] overflow-hidden">
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header matching Figma */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
-            About Me
+        {/* Salimov Signature Watermark Title */}
+        <div className="salimov-title-wrap">
+          <span className="salimov-watermark">RESUME</span>
+          <h2 className="salimov-heading">
+            ABOUT <span className="text-accent">ME</span>
           </h2>
-          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-            Full-Stack Software Engineer & Backend Specialist
-          </p>
-        </motion.div>
+        </div>
 
-        {/* 2-Column Content Grid matching Figma */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center mb-20">
-          {/* Left Column: Portrait shape matching Figma */}
+        {/* 2-Column Info & Stats Grid */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start mb-20">
+          {/* Left Column: Personal Information Data List */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-6"
           >
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-orange-500/25 via-[#222222] to-[#161616] p-1.5 shadow-2xl">
-                <div className="w-full h-full rounded-full bg-[#161616] border border-neutral-800 flex items-center justify-center overflow-hidden relative">
-                  <img
-                    src={myPic}
-                    alt="Md. Ismail Hossain Tusher"
-                    className="w-full h-full object-cover object-top rounded-full"
-                  />
-                  <div className="absolute bottom-6 bg-[#222222]/90 border border-orange-500/40 text-orange-accent text-xs font-bold px-4 py-1 rounded-full shadow-lg">
-                    Software Engineer
+            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider mb-6 flex items-center gap-2">
+              <span>Personal Infos</span>
+            </h3>
+
+            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4 mb-8">
+              {/* Column 1 */}
+              <div className="space-y-4">
+                {personalInfoLeft.map((info) => (
+                  <div key={info.label} className="text-sm">
+                    <span className="text-neutral-400 font-medium">{info.label} : </span>
+                    <span
+                      className={`font-semibold ${
+                        info.highlight ? 'text-emerald-400' : 'text-white'
+                      }`}
+                    >
+                      {info.value}
+                    </span>
                   </div>
-                </div>
+                ))}
+              </div>
+
+              {/* Column 2 */}
+              <div className="space-y-4">
+                {personalInfoRight.map((info) => (
+                  <div key={info.label} className="text-sm truncate">
+                    <span className="text-neutral-400 font-medium">{info.label} : </span>
+                    {info.isLink ? (
+                      <a
+                        href={info.href}
+                        target={info.href.startsWith('http') ? '_blank' : undefined}
+                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="font-semibold text-white hover:text-accent transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <span className="font-semibold text-white">{info.value}</span>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
+
+            {/* Salimov "DOWNLOAD CV" button with circular icon */}
+            <a
+              href="mailto:tusher66@gmail.com?subject=CV%20Request%20-%20Md.%20Ismail%20Hossain%20Tusher"
+              className="salimov-btn"
+            >
+              <span>DOWNLOAD CV</span>
+              <span className="salimov-btn-icon">
+                <FaDownload className="text-sm" />
+              </span>
+            </a>
           </motion.div>
 
-          {/* Right Column: Bio narrative matching Figma & Download CV */}
+          {/* Right Column: 4 Salimov Stat Boxes (2x2 Grid) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
+            className="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6"
           >
-            <p className="text-neutral-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6">
-              A software engineer, the modern-day architect of digital realms, navigates the ethereal landscapes of code, sculpting intangible structures that shape our technological world. With fingers poised over keyboards like virtuoso pianists, they compose symphonies of logic, their minds a labyrinth of algorithms, scalable microservices, and reliable solutions. Their canvas is an IDE, where lines of code dance in intricate patterns, breathing life into enterprise software systems.
-            </p>
-
-            <p className="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
-              Holding a B.Sc. in Information & Communication Engineering from BAUET (with{' '}
-              <a
-                href="https://journal.bauet.ac.bd/wp-content/uploads/2020/11/22_Article-9.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange-accent hover:underline font-medium inline-flex items-center gap-1"
+            {stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                className="salimov-stat-box flex flex-col justify-between min-h-[140px] sm:min-h-[160px]"
               >
-                published research in BAUET Journal ↗
-              </a>
-              ) and 3+ years of professional full-stack software engineering experience, I specialize in architecting scalable backend systems with Java Spring Boot, engineering reactive frontends with Vue.js & Angular, and building robust database architectures with MySQL, PostgreSQL, and Oracle SQL.
-            </p>
-
-            {/* Action buttons matching Figma */}
-            <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
-              <a
-                href="mailto:tusher66@gmail.com?subject=CV%20Request%20-%20Md.%20Ismail%20Hossain%20Tusher"
-                className="btn-orange-glow px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold tracking-wide flex items-center gap-2.5 cursor-pointer inline-flex"
-              >
-                <FaDownload className="text-sm" />
-                <span>Download CV</span>
-              </a>
-
-              <a
-                href="#education"
-                className="px-7 py-3.5 rounded-full text-sm sm:text-base font-semibold text-white bg-[#1e1e1e] border border-neutral-700 hover:border-orange-accent hover:bg-[#252525] transition-all cursor-pointer inline-flex items-center gap-2"
-              >
-                <span>Education & Research</span>
-                <span className="text-orange-accent text-xs">→</span>
-              </a>
-            </div>
+                <div className="salimov-stat-number">{stat.number}</div>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="w-6 h-0.5 bg-accent shrink-0" />
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-300">
+                    {stat.label}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
 
-        {/* Circular Skills Percentage Gauges matching Figma */}
+        {/* Divider */}
+        <div className="w-full max-w-xl mx-auto h-px bg-white/10 mb-20" />
+
+        {/* Skills Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="pt-12 border-t border-neutral-800"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6 justify-center">
+          <h3 className="text-center text-xl sm:text-2xl font-bold text-white uppercase tracking-wider mb-12">
+            My <span className="text-accent">Skills</span>
+          </h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-center">
             {skillsData.map((skill, index) => (
               <CircularProgress
                 key={skill.label}
                 label={skill.label}
                 percentage={skill.percentage}
-                badgeText={skill.badgeText}
                 icon={skill.icon}
-                textColor={skill.textColor}
                 inView={inView}
-                delay={index * 0.12}
+                delay={index * 0.1}
               />
             ))}
           </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import NavigationDock from './components/NavigationDock';
+import ColorSwitcher from './components/ColorSwitcher';
 import Hero from './components/Hero';
-import Services from './components/Services';
 import About from './components/About';
 import Education from './components/Education';
 import Projects from './components/Projects';
@@ -14,10 +14,10 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
 
   useEffect(() => {
-    const sections = ['home', 'services', 'about', 'education', 'portfolio', 'contact'];
+    const sections = ['home', 'about', 'education', 'portfolio', 'contact'];
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY + 250;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sectionId = sections[i];
@@ -39,17 +39,19 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#111111] text-white selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-[#111111] text-white selection:bg-accent selection:text-white relative">
       <ScrollProgress />
-      <Navbar activeSection={activeSection} />
+      <ColorSwitcher />
+      <NavigationDock activeSection={activeSection} />
+      
       <main>
         <Hero />
-        <Services />
         <About />
         <Education />
         <Projects />
         <Contact />
       </main>
+
       <Footer />
       <WhatsAppButton />
     </div>
