@@ -7,6 +7,7 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from 'react-icons/fa';
+// @ts-ignore
 import myPicture from '../assets/Images/myPicture.png';
 
 export default function Hero() {

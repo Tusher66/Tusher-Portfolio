@@ -190,8 +190,8 @@ export default function About() {
 
             {/* Salimov "DOWNLOAD CV" button with circular icon */}
             <a
-              href="/Md_Ismail_Hossain_Tusher_CV.pdf"
-              download="Md_Ismail_Hossain_Tusher_CV.pdf"
+              href="/Ismail_Hossain_Tusher_CV.pdf"
+              download="Ismail_Hossain_Tusher_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="salimov-btn"
