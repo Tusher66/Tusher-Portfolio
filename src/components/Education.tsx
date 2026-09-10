@@ -13,22 +13,24 @@ export default function Education() {
 
   const experiences = [
     {
-      period: 'Nov 2023 – Present',
+      period: 'Nov 2022 – Present',
       role: 'Software Engineer',
-      company: 'Computer Networks Limited (CNS)',
+      company: 'Computer Network Systems (CNS) Limited',
       bullets: [
-        'Scalable backend microservices using Java Spring Boot and REST APIs.',
-        'Dynamic web interfaces with Vue.js, Vuex, and Nuxt.js.',
-        'Optimized SQL database queries and caching with Redis.',
+        'Designed and maintained scalable backend systems using Java Spring Boot.',
+        'Built and optimized RESTful APIs with focus on performance, security, and reliability.',
+        'Developed dynamic, responsive interfaces using Vue.js, Nuxt.js, and Angular.',
+        'Led frontend development teams as Team Lead on 6+ client projects.',
       ],
     },
     {
-      period: 'Mar 2022 – Oct 2023',
-      role: 'Junior Software Engineer',
-      company: 'Jobdesk ltd',
+      period: 'Mar 2022 – Oct 2022',
+      role: 'Junior Frontend Developer',
+      company: 'Jobdesk',
       bullets: [
-        'Enterprise web apps with Spring Boot, Hibernate, and PostgreSQL.',
-        'JWT authentication, RBAC, and unit testing with JUnit & Mockito.',
+        'Developed responsive Angular interfaces for a Swiss recruitment and staffing platform.',
+        'Integrated Angular frontend components with REST APIs and backend services.',
+        'Built reusable TypeScript/Angular components with responsive design architecture.',
       ],
     }
   ];
@@ -36,18 +38,18 @@ export default function Education() {
   const educations = [
     {
       period: '2016 – 2020',
-      degree: 'B.Sc. in ICE',
-      institution: 'BAUET (Qadirabad Cantonment)',
-      result: 'CGPA: 3.54 / 4.00 (Distinction)',
+      degree: 'B.Sc. in Information & Communication Engineering',
+      institution: 'BAUET (Qadirabad Cantonment, Natore)',
+      result: 'CGPA: 3.54 / 4.00',
       bullets: [
         'Algorithms, data communication, and antenna design systems.',
-        'Thesis on “Meander Line Omni-directional Loop Antenna Design”.',
+        'Thesis on “Meander Line Omni-directional Loop Antenna Design for Biomedical Applications”.',
       ],
     },
     {
       period: '2012 – 2014',
-      degree: 'HSC (Science)',
-      institution: 'Govt. Shaheed Bulbul College, Pabna',
+      degree: 'Higher Secondary Certificate (HSC)',
+      institution: 'Govt. Shahid BulBul College, Pabna',
       result: 'GPA: 4.70 / 5.00',
       bullets: [
         'Science curriculum: Math, Physics, Chemistry, Biology.',
@@ -55,7 +57,7 @@ export default function Education() {
     },
     {
       period: '2011 – 2012',
-      degree: 'SSC (Science)',
+      degree: 'Secondary School Certificate (SSC)',
       institution: 'TSC, Pabna',
       result: 'GPA: 5.00 / 5.00 (A+)',
       bullets: [

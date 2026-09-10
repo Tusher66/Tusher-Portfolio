@@ -190,7 +190,10 @@ export default function About() {
 
             {/* Salimov "DOWNLOAD CV" button with circular icon */}
             <a
-              href="mailto:tusher66@gmail.com?subject=CV%20Request%20-%20Md.%20Ismail%20Hossain%20Tusher"
+              href="/Md_Ismail_Hossain_Tusher_CV.pdf"
+              download="Md_Ismail_Hossain_Tusher_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="salimov-btn"
             >
               <span>DOWNLOAD CV</span>

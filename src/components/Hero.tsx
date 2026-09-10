@@ -96,7 +96,7 @@ export default function Hero() {
 
           {/* Bold Name */}
           <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white uppercase tracking-tight leading-tight mb-2 font-display">
-            I'M <span className="text-accent">ISMAIL TUSHER.</span>
+            I'M <span className="text-accent">ISMAIL HOSSAIN TUSHER.</span>
           </h1>
 
           {/* Typing Role */}
@@ -105,9 +105,9 @@ export default function Hero() {
               sequence={[
                 'Full-Stack Software Engineer',
                 2200,
-                'Java Spring Boot Backend Specialist',
-                2200,
                 'Vue.js & Angular Frontend Architect',
+                2200,
+                'Java Spring Boot Backend Developer',
                 2200,
                 'Published Research Author (BAUET)',
                 2200,
