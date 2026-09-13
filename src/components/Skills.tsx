@@ -8,7 +8,7 @@ const skillCategories = [
     color: 'from-indigo-500 to-blue-600',
     borderColor: 'border-indigo-500/30',
     skills: [
-      { name: 'Java', level: 92 },
+      { name: 'Java', level: 90 },
       { name: 'Spring Boot', level: 90 },
       { name: 'Spring Security', level: 85 },
       { name: 'Hibernate / JPA', level: 85 },
