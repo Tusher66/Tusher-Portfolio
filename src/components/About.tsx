@@ -91,7 +91,6 @@ export default function About() {
   const personalInfoLeft = [
     { label: 'First Name', value: 'Ismail Hossain' },
     { label: 'Last Name', value: 'Tusher' },
-    { label: 'Age', value: '27 Years' },
     { label: 'Nationality', value: 'Bangladeshi' },
     { label: 'Freelance', value: 'Available', highlight: true },
   ];
@@ -156,9 +155,8 @@ export default function About() {
                   <div key={info.label} className="text-xs">
                     <span className="text-neutral-400 font-medium">{info.label} : </span>
                     <span
-                      className={`font-semibold ${
-                        info.highlight ? 'text-emerald-400' : 'text-white'
-                      }`}
+                      className={`font-semibold ${info.highlight ? 'text-emerald-400' : 'text-white'
+                        }`}
                     >
                       {info.value}
                     </span>
