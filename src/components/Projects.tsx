@@ -40,12 +40,25 @@ export default function Projects() {
       duration: '8 Months',
       description:
         'A comprehensive module-based ERP platform for the Wage Earners’ Welfare Board covering payroll, accounting, HR, reintegration assistance, and multi-tier financial approvals.',
-      tech: ['Java Spring Boot', 'Vue.js 3', 'Tailwind CSS', 'WebSocket', 'MySQL'],
+      tech: ['Java Spring Boot', 'Minio', 'Vue.js 3', 'Tailwind CSS', 'WebSocket', 'MySQL'],
       gradient: 'from-amber-600/30 via-neutral-900 to-black',
       githubUrl: 'https://github.com/Tusher66',
     },
     {
       id: 2,
+      title: 'Microservices Architecture',
+      category: 'Backend & APIs',
+      categoryType: 'backend',
+      client: 'Distributed Systems',
+      duration: '4 Months',
+      description:
+        'A resilient, production-oriented Spring Boot microservices backend featuring Eureka Service Discovery, Spring Cloud API Gateway with JWT validation, Config Server, OpenFeign inter-service communication, Resilience4j circuit breakers, and polyglot persistence (PostgreSQL & MongoDB).',
+      tech: ['Spring Boot', 'Spring Cloud', 'PostgreSQL', 'MongoDB', 'Eureka', 'Resilience4j'],
+      gradient: 'from-teal-800/30 via-neutral-900 to-black',
+      githubUrl: 'https://github.com/Tusher66/microservice',
+    },
+    {
+      id: 3,
       title: 'Deeam Car Wash System',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -58,7 +71,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 3,
+      id: 4,
       title: 'Automated Vehicle Inspection',
       category: 'Automated Systems',
       categoryType: 'automated',
@@ -71,7 +84,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 4,
+      id: 5,
       title: 'MV Tax Collection & Billing',
       category: 'Backend & APIs',
       categoryType: 'backend',
@@ -84,7 +97,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 5,
+      id: 6,
       title: 'BRTA Citizen Service Portal',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -97,10 +110,10 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 6,
+      id: 7,
       title: 'Undercover Dark Portfolio',
-      category: 'Enterprise ERP',
-      categoryType: 'erp',
+      category: 'Full-Stack Apps',
+      categoryType: 'fullstack',
       client: 'Personal Project',
       duration: '1 Month',
       description:
@@ -138,11 +151,10 @@ export default function Projects() {
               <button
                 key={tab.key}
                 onClick={() => setActiveFilter(tab.key)}
-                className={`px-3.5 sm:px-4 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? 'bg-accent text-white shadow-md'
-                    : 'bg-[#252525] text-neutral-300 hover:text-white hover:bg-[#2e2e2e]'
-                }`}
+                className={`px-3.5 sm:px-4 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${isActive
+                  ? 'bg-accent text-white shadow-md'
+                  : 'bg-[#252525] text-neutral-300 hover:text-white hover:bg-[#2e2e2e]'
+                  }`}
               >
                 {tab.name}
               </button>
@@ -259,10 +271,10 @@ export default function Projects() {
                   <span className="text-neutral-400 block font-medium text-[11px]">Client :</span>
                   <span className="text-white font-semibold">{selectedProject.client}</span>
                 </div>
-                <div>
+                {/* <div>
                   <span className="text-neutral-400 block font-medium text-[11px]">Duration :</span>
                   <span className="text-white font-semibold">{selectedProject.duration}</span>
-                </div>
+                </div> */}
                 <div>
                   <span className="text-neutral-400 block font-medium text-[11px]">Code Base :</span>
                   <span className="text-white font-semibold">GitHub Repository</span>
