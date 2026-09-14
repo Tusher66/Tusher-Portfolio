@@ -112,6 +112,15 @@ html, body {
   background: var(--accent-color);
 }
 
+body.modal-open {
+  overflow: hidden !important;
+}
+
+.modal-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) #1e1e1e;
+}
+
 /* Typography & Accent Utilities */
 .text-accent {
   color: var(--accent-color);

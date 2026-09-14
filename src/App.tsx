@@ -19,6 +19,15 @@ export default function App() {
     if (!container) return;
 
     const handleWheel = (e: WheelEvent) => {
+      // If a modal is open or target is inside a scrollable modal/dialog/container, allow native scroll
+      const target = e.target as HTMLElement | null;
+      if (
+        document.body.classList.contains('modal-open') ||
+        target?.closest('[role="dialog"], .modal-overlay, .modal-container, .overflow-y-auto')
+      ) {
+        return;
+      }
+
       if (window.innerWidth >= 1024) {
         // If user is wheeling vertically, translate to horizontal scroll
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {

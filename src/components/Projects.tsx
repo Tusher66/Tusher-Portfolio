@@ -1,7 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaExternalLinkAlt, FaGithub, FaTimes } from 'react-icons/fa';
+
+interface ProjectMetric {
+  value: string;
+  label: string;
+}
 
 interface Project {
   id: number;
@@ -15,6 +21,8 @@ interface Project {
   gradient: string;
   githubUrl: string;
   liveUrl?: string;
+  metrics?: ProjectMetric[];
+  subsystems?: string[];
 }
 
 export default function Projects() {
@@ -22,10 +30,28 @@ export default function Projects() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedProject(null);
+      }
+    };
+    if (selectedProject) {
+      document.body.classList.add('modal-open');
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+    return () => {
+      document.body.classList.remove('modal-open');
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
+
   const filterTabs = [
     { name: 'All', key: 'All' },
-    { name: 'Enterprise ERP', key: 'erp' },
     { name: 'Full-Stack Apps', key: 'fullstack' },
+    { name: 'Enterprise ERP', key: 'erp' },
     { name: 'Backend & APIs', key: 'backend' },
     { name: 'Automated Systems', key: 'automated' },
   ];
@@ -33,6 +59,46 @@ export default function Projects() {
   const projects: Project[] = [
     {
       id: 1,
+      title: 'IDRA National Web Portal & CMS',
+      category: 'Full-Stack Apps',
+      categoryType: 'fullstack',
+      client: 'IDRA, Govt. of Bangladesh (BISDP, Ministry of Finance)',
+      duration: 'Enterprise Case Study',
+      description:
+        'A high-throughput, microservice-integrated regulatory ecosystem and enterprise CMS powering the digital presence, Elasticsearch full-text indexing, automated GitLab CI/CD pipelines, citizen grievance redressal (GRS), and distributed MinIO S3 document delivery for Bangladesh’s apex insurance authority.',
+      tech: [
+        'Java 17',
+        'Spring Boot 3.1',
+        'Nuxt 3 SSR',
+        'Vue.js 3',
+        'Elasticsearch 8.x',
+        'MyBatis 3.0',
+        'MinIO S3',
+        'Redis',
+        'Keycloak SSO',
+        'GitLab CI/CD',
+        'Docker',
+        'MySQL 8.0',
+      ],
+      gradient: 'from-blue-600/35 via-indigo-950/50 to-black',
+      githubUrl: 'https://github.com/Tusher66',
+      liveUrl: 'https://idra.org.bd/',
+      metrics: [
+        { value: '< 15ms', label: 'Elasticsearch Query' },
+        { value: '< 6 Min', label: 'CI/CD Pipeline' },
+        { value: '78% ↓', label: 'API Latency (N+1 Solved)' },
+        { value: '< 120ms', label: 'Nuxt 3 SSR TTFB' },
+        { value: '100K+', label: 'PDFs on MinIO S3' },
+      ],
+      subsystems: [
+        'Public Web Portal: Nuxt 3 (SSR), Pinia, bilingual localization (@nuxtjs/i18n), FullCalendar, pdfjs-dist',
+        'Admin Control Plane: Vue 3, TinyMCE, vuedraggable navigation builder, Chart.js live analytics, granular RBAC',
+        'Backend Core API: Spring Boot 3.1 & Java 17, MyBatis 3.0.2 mappers, Redis cache, Keycloak SSO',
+        'Citizen Grievance Redress System (GRS) with SMS OTP verification and CC-CRM sync',
+      ],
+    },
+    {
+      id: 2,
       title: 'RAISE Enterprise ERP',
       category: 'Enterprise ERP',
       categoryType: 'erp',
@@ -43,9 +109,10 @@ export default function Projects() {
       tech: ['Java Spring Boot', 'Minio', 'Vue.js 3', 'Tailwind CSS', 'WebSocket', 'MySQL'],
       gradient: 'from-amber-600/30 via-neutral-900 to-black',
       githubUrl: 'https://github.com/Tusher66',
+      liveUrl: 'https://portal.wewb.gov.bd/',
     },
     {
-      id: 2,
+      id: 3,
       title: 'Microservices Architecture',
       category: 'Backend & APIs',
       categoryType: 'backend',
@@ -58,7 +125,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66/microservice',
     },
     {
-      id: 3,
+      id: 4,
       title: 'Deeam Car Wash System',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -71,7 +138,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 4,
+      id: 5,
       title: 'Automated Vehicle Inspection',
       category: 'Automated Systems',
       categoryType: 'automated',
@@ -84,7 +151,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 5,
+      id: 6,
       title: 'MV Tax Collection & Billing',
       category: 'Backend & APIs',
       categoryType: 'backend',
@@ -97,7 +164,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 6,
+      id: 7,
       title: 'BRTA Citizen Service Portal',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -110,7 +177,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 7,
+      id: 8,
       title: 'Undercover Dark Portfolio',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -162,10 +229,10 @@ export default function Projects() {
           })}
         </div>
 
-        {/* Project Cards Grid - Compact 3x2 Grid Fitted to Screen */}
+        {/* Project Cards Grid - Responsive 4-column layout */}
         <motion.div
           layout
-          className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-3.5"
         >
           <AnimatePresence>
             {filteredProjects.map((project) => (
@@ -199,16 +266,23 @@ export default function Projects() {
                     </p>
                   </div>
 
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1 z-10">
-                    {project.tech.slice(0, 2).map((t) => (
-                      <span
-                        key={t}
-                        className="text-[8px] font-semibold bg-black/50 text-neutral-300 px-1.5 py-0.5 rounded border border-white/10"
-                      >
-                        {t}
+                  {/* Tech Tags & Live Tag */}
+                  <div className="flex items-center justify-between gap-1 z-10">
+                    <div className="flex flex-wrap gap-1">
+                      {project.tech.slice(0, 2).map((t) => (
+                        <span
+                          key={t}
+                          className="text-[8px] font-semibold bg-black/50 text-neutral-300 px-1.5 py-0.5 rounded border border-white/10"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    {project.liveUrl && (
+                      <span className="text-[8px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                        LIVE
                       </span>
-                    ))}
+                    )}
                   </div>
                 </div>
 
@@ -227,106 +301,197 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* Salimov Detailed Project Popup Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#1e1e1e] border border-white/10 rounded-2xl max-w-xl w-full p-6 sm:p-7 shadow-2xl relative max-h-[90vh] overflow-y-auto"
-            >
-              {/* Close Button */}
-              <button
+      {/* Salimov Detailed Project Popup Modal via Portal */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {selectedProject && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 text-neutral-400 hover:text-white p-2 text-lg cursor-pointer"
+                onWheel={(e) => e.stopPropagation()}
+                className="modal-overlay fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overscroll-contain"
+                role="dialog"
+                aria-modal="true"
               >
-                <FaTimes />
-              </button>
+                <motion.div
+                  initial={{ scale: 0.9, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.9, y: 20 }}
+                  onClick={(e) => e.stopPropagation()}
+                  onWheel={(e) => e.stopPropagation()}
+                  className="modal-container bg-[#1e1e1e] border border-white/10 rounded-2xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl relative max-h-[90vh] overflow-y-auto overscroll-contain"
+                >
+                  {/* Close Button */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(null)}
+                    className="absolute top-4 right-4 z-20 text-neutral-400 hover:text-white p-2.5 text-lg cursor-pointer bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+                    aria-label="Close project modal"
+                  >
+                    <FaTimes />
+                  </button>
 
-              <div className="salimov-title-wrap mb-4 text-left">
-                <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
-                  {selectedProject.category}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight font-display">
-                  {selectedProject.title}
-                </h3>
-              </div>
-
-              {/* Salimov Meta Table */}
-              <div className="grid grid-cols-2 gap-2.5 mb-4 bg-[#252525] p-3 rounded-xl border border-white/5 text-xs">
-                <div>
-                  <span className="text-neutral-400 block font-medium text-[11px]">Project :</span>
-                  <span className="text-white font-semibold">{selectedProject.category}</span>
-                </div>
-                <div>
-                  <span className="text-neutral-400 block font-medium text-[11px]">Client :</span>
-                  <span className="text-white font-semibold">{selectedProject.client}</span>
-                </div>
-                {/* <div>
-                  <span className="text-neutral-400 block font-medium text-[11px]">Duration :</span>
-                  <span className="text-white font-semibold">{selectedProject.duration}</span>
-                </div> */}
-                <div>
-                  <span className="text-neutral-400 block font-medium text-[11px]">Code Base :</span>
-                  <span className="text-white font-semibold">GitHub Repository</span>
-                </div>
-              </div>
-
-              {/* Description */}
-              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-4">
-                {selectedProject.description}
-              </p>
-
-              {/* Frameworks / Tech */}
-              <div className="mb-5">
-                <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-1.5">
-                  Frameworks & Technologies
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedProject.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-2.5 py-0.5 bg-[#2b2b2b] border border-white/10 text-neutral-200 text-xs rounded-full font-medium"
-                    >
-                      {t}
+                  <div className="salimov-title-wrap mb-4 text-left">
+                    <span className="text-xs font-bold text-accent uppercase tracking-widest block mb-1">
+                      {selectedProject.category}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight font-display">
+                      {selectedProject.title}
+                    </h3>
+                  </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-3 items-center">
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="salimov-btn flex-1 justify-between"
-                >
-                  <span>GITHUB PREVIEW</span>
-                  <span className="salimov-btn-icon">
-                    <FaGithub className="text-sm" />
-                  </span>
-                </a>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="salimov-btn-secondary"
-                >
-                  CLOSE
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
+                  {/* Salimov Meta Table */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4 bg-[#252525] p-3 rounded-xl border border-white/5 text-xs">
+                    <div>
+                      <span className="text-neutral-400 block font-medium text-[11px]">Client :</span>
+                      <span className="text-white font-semibold">{selectedProject.client}</span>
+                    </div>
+                    <div>
+                      <span className="text-neutral-400 block font-medium text-[11px]">Type / Scope :</span>
+                      <span className="text-white font-semibold">{selectedProject.duration}</span>
+                    </div>
+                    <div>
+                      <span className="text-neutral-400 block font-medium text-[11px]">Live Website :</span>
+                      {selectedProject.liveUrl ? (
+                        <a
+                          href={selectedProject.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent hover:underline font-semibold inline-flex items-center gap-1"
+                        >
+                          {selectedProject.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                          <FaExternalLinkAlt className="text-[9px]" />
+                        </a>
+                      ) : (
+                        <span className="text-white font-semibold">GitHub Demo</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Key Performance Metrics (if available) */}
+                  {selectedProject.metrics && selectedProject.metrics.length > 0 && (
+                    <div className="mb-4">
+                      <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-2">
+                        Key Performance & Engineering Metrics
+                      </p>
+                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                        {selectedProject.metrics.map((m, i) => (
+                          <div
+                            key={i}
+                            className="bg-[#262626] border border-white/5 rounded-lg p-2 text-center"
+                          >
+                            <div className="text-xs sm:text-sm font-black text-accent font-mono">
+                              {m.value}
+                            </div>
+                            <div className="text-[9px] text-neutral-300 font-medium leading-tight mt-0.5">
+                              {m.label}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Description */}
+                  <div className="mb-4">
+                    <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-1.5">
+                      Executive Summary
+                    </p>
+                    <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+                      {selectedProject.description}
+                    </p>
+                  </div>
+
+                  {/* Key Subsystems / Highlights (if available) */}
+                  {selectedProject.subsystems && selectedProject.subsystems.length > 0 && (
+                    <div className="mb-4">
+                      <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-1.5">
+                        Architecture & Subsystems
+                      </p>
+                      <ul className="space-y-1 text-xs text-neutral-300">
+                        {selectedProject.subsystems.map((sub, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                            <span>{sub}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Frameworks / Tech */}
+                  <div className="mb-5">
+                    <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-1.5">
+                      Frameworks & Technologies
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {selectedProject.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-0.5 bg-[#2b2b2b] border border-white/10 text-neutral-200 text-xs rounded-full font-medium"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap gap-3 items-center">
+                    {selectedProject.liveUrl ? (
+                      <>
+                        <a
+                          href={selectedProject.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="salimov-btn flex-1 justify-between"
+                        >
+                          <span>VISIT LIVE PORTAL</span>
+                          <span className="salimov-btn-icon">
+                            <FaExternalLinkAlt className="text-xs" />
+                          </span>
+                        </a>
+                        <a
+                          href={selectedProject.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="salimov-btn-secondary"
+                        >
+                          <FaGithub className="text-sm" />
+                          <span>GITHUB</span>
+                        </a>
+                      </>
+                    ) : (
+                      <a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="salimov-btn flex-1 justify-between"
+                      >
+                        <span>GITHUB PREVIEW</span>
+                        <span className="salimov-btn-icon">
+                          <FaGithub className="text-sm" />
+                        </span>
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProject(null)}
+                      className="salimov-btn-secondary"
+                    >
+                      CLOSE
+                    </button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 }
+
