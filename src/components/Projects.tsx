@@ -19,8 +19,8 @@ interface Project {
   description: string;
   tech: string[];
   gradient: string;
-  githubUrl: string;
-  liveUrl?: string;
+  githubUrl?: string | null;
+  liveUrl?: string | null;
   metrics?: ProjectMetric[];
   subsystems?: string[];
 }
@@ -81,12 +81,11 @@ export default function Projects() {
         'MySQL 8.0',
       ],
       gradient: 'from-blue-600/35 via-indigo-950/50 to-black',
-      githubUrl: 'https://github.com/Tusher66',
+      githubUrl: null,
       liveUrl: 'https://idra.org.bd/',
       metrics: [
         { value: '< 15ms', label: 'Elasticsearch Query' },
         { value: '< 6 Min', label: 'CI/CD Pipeline' },
-        { value: '78% ↓', label: 'API Latency (N+1 Solved)' },
         { value: '< 120ms', label: 'Nuxt 3 SSR TTFB' },
         { value: '100K+', label: 'PDFs on MinIO S3' },
       ],
@@ -99,17 +98,41 @@ export default function Projects() {
     },
     {
       id: 2,
-      title: 'RAISE Enterprise ERP',
+      title: 'RAISE-MIS Digital Welfare & ERP',
       category: 'Enterprise ERP',
       categoryType: 'erp',
-      client: 'Wage Earners’ Welfare Board (WEWB)',
-      duration: '8 Months',
+      client: 'Wage Earners’ Welfare Board (WEWB) • World Bank',
+      duration: '',
       description:
-        'A comprehensive module-based ERP platform for the Wage Earners’ Welfare Board covering payroll, accounting, HR, reintegration assistance, and multi-tier financial approvals.',
-      tech: ['Java Spring Boot', 'Minio', 'Vue.js 3', 'Tailwind CSS', 'WebSocket', 'MySQL'],
-      gradient: 'from-amber-600/30 via-neutral-900 to-black',
-      githubUrl: 'https://github.com/Tusher66',
+        'A nation-scale digital welfare and ERP ecosystem developed for the Wage Earners’ Welfare Board (WEWB) under the Ministry of Expatriates’ Welfare and the World Bank. Automates the complete lifecycle of returnee reintegration (RPL), merit scholarships, disability grants, JBC life insurance claims, mortal remains repatriation, and direct electronic fund disbursements across 64 district offices and international missions.',
+      tech: [
+        'Spring Boot 3.3',
+        'Java 17 LTS',
+        'Vue 3',
+        'Vite',
+        'Pinia',
+        'TailwindCSS',
+        'MS SQL Server',
+        'MinIO S3',
+        'JasperReports 6.20',
+        'Resilience4j',
+        'STOMP WebSocket',
+        'Spring Security',
+      ],
+      gradient: 'from-cyan-600/35 via-blue-950/50 to-black',
+      githubUrl: null,
       liveUrl: 'https://portal.wewb.gov.bd/',
+      metrics: [
+        { value: '100% Audit', label: 'Immutable State Machine' },
+        { value: '< 200ms', label: 'MinIO & Vite Streaming' },
+        { value: 'Millions', label: 'Migrants & Beneficiaries' },
+      ],
+      subsystems: [
+        'Dual Modern SPAs: Citizen Self-Service Portal (Raise Public Portal) & Admin/Staff MIS Portal (Raise Back Office) built with Vue 3, Vite, Pinia, ApexCharts, and Vue-i18n bilingual localization',
+        '15 Modules: 15 modular subsystems and backend services are present across the platform',
+        'Configurable Multi-Tier Approval State Machine: Dynamic workflow routing (DEMO → Forwarded → Approver/PMU → EFT/BEFTN Disbursement) with immutable WorkflowHistoryLog audit tracking',
+        'Bilingual Reports: MinIO S3 object storage with Apache Tika MIME inspection and JasperReports engine rendering Bengali Nikosh Unicode with dynamic QR codes',
+      ],
     },
     {
       id: 3,
@@ -365,8 +388,18 @@ export default function Projects() {
                           {selectedProject.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                           <FaExternalLinkAlt className="text-[9px]" />
                         </a>
+                      ) : selectedProject.githubUrl ? (
+                        <a
+                          href={selectedProject.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent hover:underline font-semibold inline-flex items-center gap-1"
+                        >
+                          GitHub Demo
+                          <FaExternalLinkAlt className="text-[9px]" />
+                        </a>
                       ) : (
-                        <span className="text-white font-semibold">GitHub Demo</span>
+                        <span className="text-neutral-400 font-semibold">Enterprise / Private</span>
                       )}
                     </div>
                   </div>
@@ -377,7 +410,7 @@ export default function Projects() {
                       <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-2">
                         Key Performance & Engineering Metrics
                       </p>
-                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {selectedProject.metrics.map((m, i) => (
                           <div
                             key={i}
@@ -441,46 +474,52 @@ export default function Projects() {
 
                   {/* Action Buttons */}
                   <div className="flex flex-wrap gap-3 items-center">
-                    {selectedProject.liveUrl ? (
-                      <>
-                        <a
-                          href={selectedProject.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="salimov-btn flex-1 justify-between"
-                        >
-                          <span>VISIT LIVE PORTAL</span>
-                          <span className="salimov-btn-icon">
-                            <FaExternalLinkAlt className="text-xs" />
-                          </span>
-                        </a>
-                        <a
-                          href={selectedProject.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="salimov-btn-secondary"
-                        >
-                          <FaGithub className="text-sm" />
-                          <span>GITHUB</span>
-                        </a>
-                      </>
-                    ) : (
+                    {selectedProject.liveUrl && (
                       <a
-                        href={selectedProject.githubUrl}
+                        href={selectedProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="salimov-btn flex-1 justify-between"
                       >
-                        <span>GITHUB PREVIEW</span>
+                        <span>VISIT LIVE PORTAL</span>
                         <span className="salimov-btn-icon">
-                          <FaGithub className="text-sm" />
+                          <FaExternalLinkAlt className="text-xs" />
                         </span>
+                      </a>
+                    )}
+                    {selectedProject.githubUrl && (
+                      <a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={
+                          selectedProject.liveUrl
+                            ? 'salimov-btn-secondary'
+                            : 'salimov-btn flex-1 justify-between'
+                        }
+                      >
+                        {selectedProject.liveUrl ? (
+                          <>
+                            <FaGithub className="text-sm" />
+                            <span>GITHUB</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>GITHUB PREVIEW</span>
+                            <span className="salimov-btn-icon">
+                              <FaGithub className="text-sm" />
+                            </span>
+                          </>
+                        )}
                       </a>
                     )}
                     <button
                       type="button"
                       onClick={() => setSelectedProject(null)}
-                      className="salimov-btn-secondary"
+                      className={`salimov-btn-secondary ${!selectedProject.liveUrl && !selectedProject.githubUrl
+                        ? 'flex-1 justify-center'
+                        : ''
+                        }`}
                     >
                       CLOSE
                     </button>
