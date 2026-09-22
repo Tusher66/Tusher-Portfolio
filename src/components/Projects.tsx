@@ -59,6 +59,48 @@ export default function Projects() {
   const projects: Project[] = [
     {
       id: 1,
+      title: 'Jobdesk Platform (JDP) – Global ATS',
+      category: 'Full-Stack Apps',
+      categoryType: 'fullstack',
+      client: 'Jobdesk LLC • Switzerland & Global (EUR / SAS)',
+      duration: 'Enterprise Case Study',
+      description:
+        'An enterprise recruitment management platform designed to unify the end-to-end recruitment lifecycle for candidates, staffing agencies, and enterprise employers. Features an integrated Applicant Tracking System (ATS), Distributed Vacancy Search across Apache Solr clusters, Candidate Profile Monetization Marketplace, Automated CV Parsing, Real-Time SignalR communication channels, and dynamic multi-currency billing (SSLCommerz) bridging European (EUR) and South Asian (SAS) jurisdictions.',
+      tech: [
+        'ASP.NET Core 3.1',
+        'Angular 6+',
+        'NgRx Store & Effects',
+        'Apache Solr Distributed',
+        'SQL Server',
+        'MySQL',
+        'SignalR Realtime',
+        'SSLCommerz Gateway',
+        'Azure MSAL / SSO',
+        'Angular Material',
+        'ag-Grid',
+        'Chart.js',
+        'WebSockets',
+      ],
+      gradient: 'from-violet-600/35 via-indigo-950/50 to-black',
+      githubUrl: null,
+      liveUrl: 'https://www.jobdesk.com/en',
+      metrics: [
+        { value: '< 80ms', label: 'Distributed Solr Search' },
+        { value: 'Dual DB', label: 'SQL Server + MySQL' },
+        { value: '25+ Modules', label: 'Angular & NgRx Store' },
+        { value: 'Multi-Region', label: 'EUR & SAS Geolocation' },
+      ],
+      subsystems: [
+        'Distributed Geolocation Search (Apache Solr 8.x): Regional query routing partitioned between European (eur.solr.jobdesk.com:8983) and South Asian (sas.solr.jobdesk.com:8983) nodes with 10x title boosting (qf=JobTitle^10) delivering sub-80ms responses over millions of active vacancies.',
+        'Dual-Database Context Isolation (EF Core): Relational ATS domain entities (Portal Maps, Vacancy Managers, Client Proposals, Workspaces) on MS SQL Server (JobdeskDbContext), separated from multi-lingual culture datasets (CultureData), CMS blogs (Article), product pricing offers (AppProductOffer), and payment validation logs on MySQL (GlobalDbContext).',
+        'Frontend Architecture (Angular 6+, NgRx & Material): Enterprise modular SPA with 25+ lazy-loaded feature modules (PreloadAllModules), centralized immutable NgRx Store/Effects, Fuse Admin, custom LocalizeService internationalization, and ag-Grid/Chart.js candidate analytics funnels.',
+        'AI CV/Resume Parser & Candidate Intelligence: Asynchronous multipart streaming upload pipeline (cv-parsing.service.ts, FormData, RxJS) extracting candidate education, work experience, rating matrices, and automated skill tagging with candidate order locking.',
+        'Realtime Communication Hub: Bidirectional ASP.NET Core SignalR WebSocket hub powering recruiter-to-candidate instant messaging, typing indicators, and real-time presence tracking.',
+        'SSLCommerz Multi-Currency Engine & Enterprise SSO: 4-stage secure payment lifecycle with cryptographic HMAC verification and Instant Payment Notifications (IPN) for candidate profile unlocks, alongside Microsoft Azure Active Directory (MSAL) SSO and Office 365 calendar sync.',
+      ],
+    },
+    {
+      id: 2,
       title: 'IDRA National Web Portal & CMS',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -97,7 +139,7 @@ export default function Projects() {
       ],
     },
     {
-      id: 2,
+      id: 3,
       title: 'RAISE-MIS Digital Welfare & ERP',
       category: 'Enterprise ERP',
       categoryType: 'erp',
@@ -135,7 +177,7 @@ export default function Projects() {
       ],
     },
     {
-      id: 3,
+      id: 4,
       title: 'Microservices Backend Architecture',
       category: 'Backend & APIs',
       categoryType: 'backend',
@@ -176,7 +218,7 @@ export default function Projects() {
       ],
     },
     {
-      id: 4,
+      id: 5,
       title: 'Automated Vehicle Inspection System (AVIS)',
       category: 'Automated Systems',
       categoryType: 'automated',
@@ -217,7 +259,7 @@ export default function Projects() {
       ],
     },
     {
-      id: 5,
+      id: 6,
       title: 'Smart Car Wash & Facility Management Platform',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -263,7 +305,7 @@ export default function Projects() {
       ],
     },
     {
-      id: 6,
+      id: 7,
       title: 'MV Tax Collection & Billing',
       category: 'Backend & APIs',
       categoryType: 'backend',
@@ -276,7 +318,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 7,
+      id: 8,
       title: 'BRTA Citizen Service Portal',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
@@ -289,7 +331,7 @@ export default function Projects() {
       githubUrl: 'https://github.com/Tusher66',
     },
     {
-      id: 8,
+      id: 9,
       title: 'Undercover Dark Portfolio',
       category: 'Full-Stack Apps',
       categoryType: 'fullstack',
