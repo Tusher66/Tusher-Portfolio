@@ -10,6 +10,7 @@ import {
   SiPostgresql,
   SiTypescript,
   SiRedis,
+  SiRabbitmq,
 } from 'react-icons/si';
 
 interface CircularProgressProps {
@@ -119,6 +120,7 @@ export default function About() {
     { label: 'PostgreSQL', percentage: 88, icon: <SiPostgresql className="text-indigo-400" /> },
     { label: 'TypeScript', percentage: 85, icon: <SiTypescript className="text-blue-500" /> },
     { label: 'Redis Cache', percentage: 78, icon: <SiRedis className="text-red-400" /> },
+    { label: 'RabbitMQ', percentage: 68, icon: <SiRabbitmq className="text-orange-500" /> },
   ];
 
   return (
@@ -237,7 +239,7 @@ export default function About() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 sm:gap-4 justify-center">
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-9 gap-3 sm:gap-4 justify-center">
             {skillsData.map((skill, index) => (
               <CircularProgress
                 key={skill.label}

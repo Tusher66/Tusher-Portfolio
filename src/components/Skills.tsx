@@ -14,6 +14,7 @@ const skillCategories = [
       { name: 'Hibernate / JPA', level: 85 },
       { name: 'REST API Design', level: 90 },
       { name: 'Microservices', level: 80 },
+      { name: 'RabbitMQ', level: 68 },
     ],
   },
   {
@@ -63,6 +64,7 @@ const techBadges = [
   { name: 'REST API', emoji: '🔗', color: 'border-purple-500/40 bg-purple-500/10 text-purple-300' },
   { name: 'Microservices', emoji: '🏗️', color: 'border-indigo-400/40 bg-indigo-400/10 text-indigo-300' },
   { name: 'PostgreSQL', emoji: '🐘', color: 'border-blue-400/40 bg-blue-400/10 text-blue-300' },
+  { name: 'RabbitMQ', emoji: '🐇', color: 'border-orange-500/40 bg-orange-500/10 text-orange-300' },
 ];
 
 function SkillBar({ name, level, color, delay, inView }: {

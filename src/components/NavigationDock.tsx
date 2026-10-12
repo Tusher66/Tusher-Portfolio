@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   FaHome,
   FaUser,
@@ -16,16 +15,6 @@ export default function NavigationDock({
   activeSection = 'home',
   setActiveSection,
 }: NavigationDockProps) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const navItems = [
     { id: 'home', label: 'Home', icon: <FaHome /> },

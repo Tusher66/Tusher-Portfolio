@@ -27,7 +27,7 @@ interface Project {
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<string>('All');
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
